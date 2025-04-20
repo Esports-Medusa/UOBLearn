@@ -1,37 +1,45 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <div>
-    <nav>
-      <router-link to="/register">Register</router-link> |
-      <router-link to="/login">Login</router-link>
+    <nav class="navbar">
+      <div class="nav-left">
+        <router-link to="/">Main</router-link> |
+        <router-link to="/mentor">Meet with your mentor</router-link> |
+        <router-link to="/account">My account</router-link>
+      </div>
+      <div class="nav-right">
+        <router-link to="/register">Register</router-link> |
+        <router-link to="/login">Login</router-link>
+      </div>
     </nav>
+
     <router-view />
   </div>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
+<script setup>
+// 无需引入其他组件
+</script>
+
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #ccc;
+  font-family: sans-serif;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+.nav-left a,
+.nav-right a {
+  margin-right: 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.nav-right {
+  white-space: nowrap;
 }
 </style>

@@ -38,6 +38,9 @@ export default {
       try {
         const res = await axios.post('http://127.0.0.1:5000/register', this.form)
         this.message = res.data.msg
+
+        // successful register redirect
+        this.$router.push('/')
       } catch (err) {
         this.message = err.response?.data?.msg || 'Registration failed'
       }
