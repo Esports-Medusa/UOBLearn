@@ -1,15 +1,28 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
+from app import db
+from app.models import Mentor
+from app.forms import MentorForm
 
-bp = Blueprint('mentor', __name__, url_prefix='/mentor')
+bp = Blueprint('mentors', __name__, url_prefix='/mentors')
 
 # 示例：导师主页
-@bp.route('/')
+@bp.route('/', methods=['GET', 'POST'])
 def mentor_home():
-    return "Mentor Home Page"
+    q = db.select(Mentor)
+    mentors = db.session.scalars(q).all()
+    # return redirect(url_for('product', id=int(form.choice.data)))
+
+    form = MentorForm()
+    if form.validate_on_submit():
+        pass
+
+    return render_template('mentors.html', title="Mentors", mentors=mentors, form=form)
+
 
 # 示例：导师接受预约
 @bp.route('/appointments')
 def view_appointments():
+
     return "View mentorship requests (Placeholder)"
 
 # 示例：导师信息修改
