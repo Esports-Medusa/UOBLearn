@@ -1,0 +1,100 @@
+Introduction to Blockchain 1|edX|Intermediate|Blockchain|https://www.edx.org/course/introduction-to-blockchain-1
+Introduction to Cybersecurity 2|Udemy|Intermediate|Cybersecurity|https://www.udemy.com/course/introduction-to-cybersecurity-2
+Introduction to Mobile Development 3|LinkedIn Learning|Intermediate|Mobile Development|https://www.linkedin.com/learning/introduction-to-mobile-development-3
+Introduction to Mobile Development 4|edX|Intermediate|Mobile Development|https://www.edx.org/course/introduction-to-mobile-development-4
+Introduction to Cybersecurity 5|edX|Advanced|Cybersecurity|https://www.edx.org/course/introduction-to-cybersecurity-5
+Introduction to AI 6|edX|Beginner|AI|https://www.edx.org/course/introduction-to-ai-6
+Introduction to Mobile Development 7|Coursera|Advanced|Mobile Development|https://www.coursera.org/learn/introduction-to-mobile-development-7
+Introduction to Cloud Computing 8|Udemy|Intermediate|Cloud Computing|https://www.udemy.com/course/introduction-to-cloud-computing-8
+Introduction to Cybersecurity 9|Coursera|Beginner|Cybersecurity|https://www.coursera.org/learn/introduction-to-cybersecurity-9
+Introduction to Cloud Computing 10|LinkedIn Learning|Beginner|Cloud Computing|https://www.linkedin.com/learning/introduction-to-cloud-computing-10
+Introduction to Natural Language Processing 11|OpenLearn|Intermediate|Natural Language Processing|https://www.open.edu/openlearn/introduction-to-natural-language-processing-11
+Introduction to Data Science 12|Coursera|Advanced|Data Science|https://www.coursera.org/learn/introduction-to-data-science-12
+Introduction to ML 13|LinkedIn Learning|Advanced|ML|https://www.linkedin.com/learning/introduction-to-ml-13
+Introduction to ML 14|Udemy|Advanced|ML|https://www.udemy.com/course/introduction-to-ml-14
+Introduction to AI 15|FutureLearn|Beginner|AI|https://www.futurelearn.com/courses/introduction-to-ai-15
+Introduction to Blockchain 16|edX|Advanced|Blockchain|https://www.edx.org/course/introduction-to-blockchain-16
+Introduction to Natural Language Processing 17|LinkedIn Learning|Intermediate|Natural Language Processing|https://www.linkedin.com/learning/introduction-to-natural-language-processing-17
+Introduction to Mobile Development 18|OpenLearn|Beginner|Mobile Development|https://www.open.edu/openlearn/introduction-to-mobile-development-18
+Introduction to Cloud Computing 19|FutureLearn|Intermediate|Cloud Computing|https://www.futurelearn.com/courses/introduction-to-cloud-computing-19
+Introduction to Data Science 20|FutureLearn|Beginner|Data Science|https://www.futurelearn.com/courses/introduction-to-data-science-20
+Introduction to Web Development 21|OpenLearn|Beginner|Web Development|https://www.open.edu/openlearn/introduction-to-web-development-21
+Introduction to Blockchain 22|LinkedIn Learning|Advanced|Blockchain|https://www.linkedin.com/learning/introduction-to-blockchain-22
+Introduction to Cloud Computing 23|Coursera|Intermediate|Cloud Computing|https://www.coursera.org/learn/introduction-to-cloud-computing-23
+Introduction to Cloud Computing 24|Coursera|Beginner|Cloud Computing|https://www.coursera.org/learn/introduction-to-cloud-computing-24
+Introduction to Computer Vision 25|Udemy|Intermediate|Computer Vision|https://www.udemy.com/course/introduction-to-computer-vision-25
+Introduction to Cybersecurity 26|LinkedIn Learning|Beginner|Cybersecurity|https://www.linkedin.com/learning/introduction-to-cybersecurity-26
+Introduction to Cybersecurity 27|edX|Advanced|Cybersecurity|https://www.edx.org/course/introduction-to-cybersecurity-27
+Introduction to AI 28|edX|Advanced|AI|https://www.edx.org/course/introduction-to-ai-28
+Introduction to AI 29|Coursera|Intermediate|AI|https://www.coursera.org/learn/introduction-to-ai-29
+Introduction to Mobile Development 30|OpenLearn|Intermediate|Mobile Development|https://www.open.edu/openlearn/introduction-to-mobile-development-30
+Introduction to Cloud Computing 31|edX|Beginner|Cloud Computing|https://www.edx.org/course/introduction-to-cloud-computing-31
+Introduction to AI 32|LinkedIn Learning|Advanced|AI|https://www.linkedin.com/learning/introduction-to-ai-32
+Introduction to Mobile Development 33|FutureLearn|Beginner|Mobile Development|https://www.futurelearn.com/courses/introduction-to-mobile-development-33
+Introduction to Web Development 34|OpenLearn|Advanced|Web Development|https://www.open.edu/openlearn/introduction-to-web-development-34
+Introduction to Web Development 35|OpenLearn|Intermediate|Web Development|https://www.open.edu/openlearn/introduction-to-web-development-35
+Introduction to Data Science 36|edX|Intermediate|Data Science|https://www.edx.org/course/introduction-to-data-science-36
+Introduction to Computer Vision 37|LinkedIn Learning|Beginner|Computer Vision|https://www.linkedin.com/learning/introduction-to-computer-vision-37
+Introduction to Mobile Development 38|Coursera|Advanced|Mobile Development|https://www.coursera.org/learn/introduction-to-mobile-development-38
+Introduction to Web Development 39|LinkedIn Learning|Intermediate|Web Development|https://www.linkedin.com/learning/introduction-to-web-development-39
+Introduction to Web Development 40|Coursera|Intermediate|Web Development|https://www.coursera.org/learn/introduction-to-web-development-40
+Introduction to Computer Vision 41|Udemy|Intermediate|Computer Vision|https://www.udemy.com/course/introduction-to-computer-vision-41
+Introduction to Natural Language Processing 42|LinkedIn Learning|Beginner|Natural Language Processing|https://www.linkedin.com/learning/introduction-to-natural-language-processing-42
+Introduction to Cloud Computing 43|edX|Intermediate|Cloud Computing|https://www.edx.org/course/introduction-to-cloud-computing-43
+Introduction to Natural Language Processing 44|Udemy|Advanced|Natural Language Processing|https://www.udemy.com/course/introduction-to-natural-language-processing-44
+Introduction to Cybersecurity 45|edX|Beginner|Cybersecurity|https://www.edx.org/course/introduction-to-cybersecurity-45
+Introduction to Natural Language Processing 46|OpenLearn|Intermediate|Natural Language Processing|https://www.open.edu/openlearn/introduction-to-natural-language-processing-46
+Introduction to Cloud Computing 47|FutureLearn|Beginner|Cloud Computing|https://www.futurelearn.com/courses/introduction-to-cloud-computing-47
+Introduction to Cybersecurity 48|Coursera|Beginner|Cybersecurity|https://www.coursera.org/learn/introduction-to-cybersecurity-48
+Introduction to Blockchain 49|FutureLearn|Beginner|Blockchain|https://www.futurelearn.com/courses/introduction-to-blockchain-49
+Introduction to Cloud Computing 50|LinkedIn Learning|Beginner|Cloud Computing|https://www.linkedin.com/learning/introduction-to-cloud-computing-50
+Introduction to Computer Vision 51|edX|Advanced|Computer Vision|https://www.edx.org/course/introduction-to-computer-vision-51
+Introduction to Computer Vision 52|edX|Advanced|Computer Vision|https://www.edx.org/course/introduction-to-computer-vision-52
+Introduction to Web Development 53|OpenLearn|Beginner|Web Development|https://www.open.edu/openlearn/introduction-to-web-development-53
+Introduction to AI 54|edX|Advanced|AI|https://www.edx.org/course/introduction-to-ai-54
+Introduction to Cybersecurity 55|edX|Intermediate|Cybersecurity|https://www.edx.org/course/introduction-to-cybersecurity-55
+Introduction to Computer Vision 56|Udemy|Advanced|Computer Vision|https://www.udemy.com/course/introduction-to-computer-vision-56
+Introduction to ML 57|LinkedIn Learning|Intermediate|ML|https://www.linkedin.com/learning/introduction-to-ml-57
+Introduction to Cybersecurity 58|OpenLearn|Advanced|Cybersecurity|https://www.open.edu/openlearn/introduction-to-cybersecurity-58
+Introduction to AI 59|edX|Advanced|AI|https://www.edx.org/course/introduction-to-ai-59
+Introduction to Web Development 60|OpenLearn|Intermediate|Web Development|https://www.open.edu/openlearn/introduction-to-web-development-60
+Introduction to Cloud Computing 61|OpenLearn|Intermediate|Cloud Computing|https://www.open.edu/openlearn/introduction-to-cloud-computing-61
+Introduction to AI 62|Coursera|Advanced|AI|https://www.coursera.org/learn/introduction-to-ai-62
+Introduction to Natural Language Processing 63|FutureLearn|Intermediate|Natural Language Processing|https://www.futurelearn.com/courses/introduction-to-natural-language-processing-63
+Introduction to Cloud Computing 64|edX|Beginner|Cloud Computing|https://www.edx.org/course/introduction-to-cloud-computing-64
+Introduction to Web Development 65|Coursera|Advanced|Web Development|https://www.coursera.org/learn/introduction-to-web-development-65
+Introduction to Web Development 66|Coursera|Advanced|Web Development|https://www.coursera.org/learn/introduction-to-web-development-66
+Introduction to Blockchain 67|Coursera|Beginner|Blockchain|https://www.coursera.org/learn/introduction-to-blockchain-67
+Introduction to AI 68|OpenLearn|Beginner|AI|https://www.open.edu/openlearn/introduction-to-ai-68
+Introduction to Cybersecurity 69|Coursera|Advanced|Cybersecurity|https://www.coursera.org/learn/introduction-to-cybersecurity-69
+Introduction to Data Science 70|OpenLearn|Intermediate|Data Science|https://www.open.edu/openlearn/introduction-to-data-science-70
+Introduction to Cloud Computing 71|Udemy|Advanced|Cloud Computing|https://www.udemy.com/course/introduction-to-cloud-computing-71
+Introduction to AI 72|FutureLearn|Beginner|AI|https://www.futurelearn.com/courses/introduction-to-ai-72
+Introduction to ML 73|Coursera|Advanced|ML|https://www.coursera.org/learn/introduction-to-ml-73
+Introduction to Cybersecurity 74|Udemy|Beginner|Cybersecurity|https://www.udemy.com/course/introduction-to-cybersecurity-74
+Introduction to ML 75|edX|Advanced|ML|https://www.edx.org/course/introduction-to-ml-75
+Introduction to Mobile Development 76|Udemy|Advanced|Mobile Development|https://www.udemy.com/course/introduction-to-mobile-development-76
+Introduction to ML 77|LinkedIn Learning|Intermediate|ML|https://www.linkedin.com/learning/introduction-to-ml-77
+Introduction to Computer Vision 78|FutureLearn|Beginner|Computer Vision|https://www.futurelearn.com/courses/introduction-to-computer-vision-78
+Introduction to Web Development 79|OpenLearn|Intermediate|Web Development|https://www.open.edu/openlearn/introduction-to-web-development-79
+Introduction to Natural Language Processing 80|Coursera|Intermediate|Natural Language Processing|https://www.coursera.org/learn/introduction-to-natural-language-processing-80
+Introduction to Mobile Development 81|LinkedIn Learning|Beginner|Mobile Development|https://www.linkedin.com/learning/introduction-to-mobile-development-81
+Introduction to Blockchain 82|FutureLearn|Advanced|Blockchain|https://www.futurelearn.com/courses/introduction-to-blockchain-82
+Introduction to Cloud Computing 83|FutureLearn|Advanced|Cloud Computing|https://www.futurelearn.com/courses/introduction-to-cloud-computing-83
+Introduction to Mobile Development 84|FutureLearn|Advanced|Mobile Development|https://www.futurelearn.com/courses/introduction-to-mobile-development-84
+Introduction to Web Development 85|Coursera|Beginner|Web Development|https://www.coursera.org/learn/introduction-to-web-development-85
+Introduction to Mobile Development 86|Coursera|Advanced|Mobile Development|https://www.coursera.org/learn/introduction-to-mobile-development-86
+Introduction to Natural Language Processing 87|Coursera|Beginner|Natural Language Processing|https://www.coursera.org/learn/introduction-to-natural-language-processing-87
+Introduction to AI 88|edX|Beginner|AI|https://www.edx.org/course/introduction-to-ai-88
+Introduction to ML 89|Coursera|Advanced|ML|https://www.coursera.org/learn/introduction-to-ml-89
+Introduction to Web Development 90|FutureLearn|Beginner|Web Development|https://www.futurelearn.com/courses/introduction-to-web-development-90
+Introduction to Web Development 91|Coursera|Intermediate|Web Development|https://www.coursera.org/learn/introduction-to-web-development-91
+Introduction to ML 92|edX|Intermediate|ML|https://www.edx.org/course/introduction-to-ml-92
+Introduction to Mobile Development 93|Coursera|Beginner|Mobile Development|https://www.coursera.org/learn/introduction-to-mobile-development-93
+Introduction to Cloud Computing 94|LinkedIn Learning|Advanced|Cloud Computing|https://www.linkedin.com/learning/introduction-to-cloud-computing-94
+Introduction to Cybersecurity 95|edX|Advanced|Cybersecurity|https://www.edx.org/course/introduction-to-cybersecurity-95
+Introduction to Web Development 96|FutureLearn|Advanced|Web Development|https://www.futurelearn.com/courses/introduction-to-web-development-96
+Introduction to Cybersecurity 97|FutureLearn|Beginner|Cybersecurity|https://www.futurelearn.com/courses/introduction-to-cybersecurity-97
+Introduction to Mobile Development 98|edX|Advanced|Mobile Development|https://www.edx.org/course/introduction-to-mobile-development-98
+Introduction to Computer Vision 99|edX|Intermediate|Computer Vision|https://www.edx.org/course/introduction-to-computer-vision-99
+Introduction to AI 100|FutureLearn|Intermediate|AI|https://www.futurelearn.com/courses/introduction-to-ai-100

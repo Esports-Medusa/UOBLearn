@@ -1,22 +1,20 @@
 from flask import Flask
-from config import Config
-from jinja2 import StrictUndefined
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-import sqlalchemy as sa
-import sqlalchemy.orm as so
-
 
 app = Flask(__name__)
-app.jinja_env.undefined = StrictUndefined
-app.config.from_object(Config)
+app.config['SECRET_KEY'] = 'your_secret_key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///uoblearn.db'
+
 db = SQLAlchemy(app)
-login = LoginManager(app)
-login.login_view = 'login'
+login = LoginManager()
+login.init_app(app)
+login.login_view = 'auth.login'
 
-from app import views, models
-from app.debug_utils import reset_db
+from app.routes import auth, courses, mentor, main
+app.register_blueprint(main.bp)
+app.register_blueprint(auth.bp)
+app.register_blueprint(courses.bp)
+app.register_blueprint(mentor.bp)
 
-@app.shell_context_processor
-def make_shell_context():
-    return dict(db=db, sa=sa, so=so, reset_db=reset_db)
+__all__ = ['app', 'db', 'login']
