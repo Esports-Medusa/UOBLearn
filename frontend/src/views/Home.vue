@@ -1,55 +1,69 @@
 <template>
-  <div>
-    <main class="main-content">
-      <h2>📚 Recommended Courses</h2>
+  <main class="main-content">
+    <h2>📚 Recommended Courses</h2>
 
-      <div v-if="!token">
-        <p>Please <router-link to="/login">log in</router-link> to see your recommendations.</p>
-      </div>
+    <div v-if="!token">
+      <p>Please <router-link to="/login">log in</router-link> to see your recommendations.</p>
+    </div>
 
-      <div v-else-if="courses.length === 0">
-        <p>No recommendations available yet.</p>
-      </div>
+    <div v-else-if="courses.length === 0">
+      <p>No recommendations available yet.</p>
+    </div>
 
-      <div v-else class="course-list">
-        <div class="course-card" v-for="course in courses" :key="course.title">
-          <h3>
-            <a :href="course.url" target="_blank" rel="noopener noreferrer">
-              {{ course.title }}
-            </a>
-            <span class="platform">({{ course.platform }})</span>
-          </h3>
-          <p>{{ course.description }}</p>
-        </div>
+    <div v-else class="course-list">
+      <div class="course-card" v-for="course in courses" :key="course.title">
+        <h3>
+          <a :href="course.url" target="_blank" rel="noopener noreferrer">
+            {{ course.title }}
+          </a>
+          <span class="platform">({{ course.platform }})</span>
+        </h3>
+        <p>{{ course.description }}</p>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 </template>
 
 <script>
 import axios from 'axios'
+import { onMounted, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 export default {
-  name: 'Home',
-  data() {
-    return {
-      token: localStorage.getItem('token'),
-      courses: []
-    }
-  },
-  async mounted() {
-    if (!this.token) return
+  setup() {
+    const route = useRoute()
+    const token = ref(localStorage.getItem('token'))
+    const courses = ref([])
 
-    try {
-      const res = await axios.get('http://127.0.0.1:5000/recommend', {
-        headers: {
-          Authorization: `Bearer ${this.token}`
-        }
-      })
-      this.courses = res.data
-    } catch (err) {
-      console.error('❌ Failed to load courses:', err)
+    const fetchCourses = async () => {
+      token.value = localStorage.getItem('token')  // 🧠 每次调用都刷新 token
+
+      if (!token.value) {
+        courses.value = []
+        return
+      }
+
+      try {
+        const res = await axios.get('http://127.0.0.1:5000/recommend', {
+          headers: {
+            Authorization: `Bearer ${token.value}`
+          }
+        })
+        courses.value = res.data
+      } catch (err) {
+        console.error('❌ Failed to load courses:', err)
+        courses.value = []
+      }
     }
+
+    onMounted(fetchCourses)
+
+    // 💡 关键：每次路由变化，重新获取 token + 刷新课程
+    watch(() => route.fullPath, () => {
+      fetchCourses()
+    })
+
+    return {token, courses}
   }
 }
 </script>
@@ -57,7 +71,6 @@ export default {
 <style scoped>
 .main-content {
   padding: 20px;
-  font-family: sans-serif;
 }
 
 .course-list {
@@ -72,20 +85,6 @@ export default {
   padding: 16px;
   border-radius: 6px;
   background-color: #fafafa;
-}
-
-.course-card h3 {
-  margin: 0 0 8px;
-  font-size: 18px;
-}
-
-.course-card a {
-  color: #2c3e50;
-  text-decoration: none;
-}
-
-.course-card a:hover {
-  text-decoration: underline;
 }
 
 .platform {

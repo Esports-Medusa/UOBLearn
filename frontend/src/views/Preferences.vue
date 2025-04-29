@@ -30,6 +30,8 @@ export default {
       }, {
         headers: { Authorization: `Bearer ${token}` }
       })
+
+      localStorage.setItem('is_first_login', 'false')
       this.$router.push('/')
     }
   }

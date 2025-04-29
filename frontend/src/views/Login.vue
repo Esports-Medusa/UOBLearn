@@ -27,7 +27,11 @@ export default {
     async handleLogin() {
       try {
         const res = await axios.post('http://127.0.0.1:5000/login', this.form)
-        this.message = res.data.msg
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('username', res.data.username)
+        localStorage.setItem('email', res.data.email)
+        localStorage.setItem('is_first_login', res.data.is_first_login)
+        this.$router.push('/')
       } catch (err) {
         this.message = err.response?.data?.msg || 'Login failed'
       }
@@ -35,3 +39,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+input {
+  margin: 5px 0;
+  padding: 8px;
+  width: 250px;
+}
+</style>
