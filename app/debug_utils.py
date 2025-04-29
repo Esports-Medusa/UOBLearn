@@ -27,6 +27,7 @@ def reset_db():
     m4 = Mentor(name="Maria", subject="Data Science", description="I love discovering insights from data and solving problems with it.")
     m5 = Mentor(name="Liam", subject="Web Development",description="I specialize in building fast, responsive web apps using modern tech.")
 
+
     db.session.add_all([m1, m2, m3, m4, m5])
 
 

@@ -14,7 +14,8 @@ def mentor_home():
 
     form = MentorForm()
     if form.validate_on_submit():
-        pass
+        mentor_id = form.mentor_name.data  # Get the mentor ID from the form submission
+        flash(f'Appointment booked with mentor ID: {mentor_id}')
 
     return render_template('mentors.html', title="Mentors", mentors=mentors, form=form)
 
