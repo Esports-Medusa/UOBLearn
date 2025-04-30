@@ -1,0 +1,10 @@
+Implementing the "save courses" functionality, we'll need to:
+
+Create a many-to-many relationship between users and courses so that a user can save multiple courses
+and a course can be saved by multiple users.
+I created a new table in models.py to handle many-to-many relationship (SavedCourses)
+
+
+Add a "Save" button to the course listings so that users can save courses.
+
+Create a page/tab where users can view their saved courses

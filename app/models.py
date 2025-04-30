@@ -98,3 +98,16 @@ class Course(db.Model):
     def __repr__(self):
         return f'<Course {self.title} ({self.platform})>'
 
+
+# --- SavedCourses ---
+class SavedCourse(db.Model):
+    __tablename__ = 'saved_courses'
+
+    user_id: int = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    course_id: int = db.Column(db.Integer, db.ForeignKey('courses.id'), primary_key=True)
+
+    user = db.relationship('User', backref=db.backref('saved_courses', lazy='dynamic'))
+    course = db.relationship('Course', backref=db.backref('saved_by', lazy='dynamic'))
+
+    def __repr__(self):
+        return f'<SavedCourse user_id={self.user_id} course_id={self.course_id}>'
