@@ -5,7 +5,7 @@ bp = Blueprint('mentor', __name__, url_prefix='/mentor')
 # 示例：导师主页
 @bp.route('/')
 def mentor_home():
-    return "Mentor Home Page"
+    return render_template('mentor.html')
 
 # 示例：导师接受预约
 @bp.route('/appointments')
