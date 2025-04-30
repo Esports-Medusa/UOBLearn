@@ -1,6 +1,6 @@
 from tkinter.font import names
 
-from app.models import User, Course, Mentor
+from app.models import User, Course, Mentor, Appointment
 
 def reset_db():
     from app import db
@@ -30,5 +30,8 @@ def reset_db():
 
     db.session.add_all([m1, m2, m3, m4, m5])
 
+    a1 = Appointment(mentor_name="Jane", topic='cloud computing', message="i need help with")
+
+    db.session.add_all([a1])
 
     db.session.commit()

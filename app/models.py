@@ -5,7 +5,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login
 from dataclasses import dataclass
-
+from datetime import datetime
 
 @dataclass
 class User(UserMixin, db.Model):
@@ -54,15 +54,15 @@ class Mentor(db.Model):
     description: so.Mapped[str] = so.mapped_column(sa.Text)
 
     def __repr__(self):
-        return f'Mentor(id={self.id}, name={self.name},subject={self.subject} description={self.email})'
+        return f'Mentor(id={self.id}, name={self.name},subject={self.subject} description={self.description})'
 
-@dataclass
+@dataclass #need to connect to forms
 class Appointment(db.Model):
     __tablename__ = 'Appointments'
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
     mentor_name: so.Mapped[str] = so.mapped_column(sa.String(64))
-    subject: so.Mapped[str] = so.mapped_column(sa.String(64))
-    description: so.Mapped[str] = so.mapped_column(sa.Text)
+    topic: so.Mapped[str] = so.mapped_column(sa.String(64))
+    message: so.Mapped[str] = so.mapped_column(sa.Text)
 
     def __repr__(self):
-        return f'Mentor(id={self.id}, mentor_name={self.mentor_name},subject={self.subject} description={self.email})'
+        return f'Appointment(id={self.id}, mentor_name={self.mentor_name},topic={self.topic},  message= {self. message})'
