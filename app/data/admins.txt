@@ -1,0 +1,2 @@
+Admin1|admin1|admin1@uob.edu|password1
+Admin2|admin2|admin2@uob.edu|password2
