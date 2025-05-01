@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, current_user, login_required
 from app import db
+from app.forms import ChooseForm
 from app.models import User, Course
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -74,16 +75,33 @@ def all_courses():
 @login_required
 def save_course(course_id):
     course = Course.query.get_or_404(course_id)
-    if course not in current_user.saved_courses:
-        current_user.saved_courses.append(course)
-        db.session.commit()
-        flash('Course saved successfully!', 'success')
-    else:
-        flash('Course already saved.', 'info')
-    return redirect(url_for('course_detail', course_id=course.id))
 
-#listing saved courses
-@bp.route('/saved_courses')
+    if course in current_user.saved_courses:
+        # If the user clicks on a red heart, unsave course
+        current_user.saved_courses.remove(course)
+        flash('Course removed from saved courses.', 'info')
+    else:
+        # If user clicks on unfilled heart, save course
+        current_user.saved_courses.append(course)
+        flash('Course saved successfully!', 'success')
+
+    db.session.commit()
+
+    return redirect(url_for('all_courses', course_id=course.id))
+
+#listing saved courses with option to remove from saved
+@bp.route('/saved_courses', methods = ['GET', 'POST'])
 @login_required
 def saved_courses_display():
-    return render_template('saved_courses.html', courses=current_user.saved_courses)
+    form = ChooseForm()
+    if form.validate_on_submit():
+        remove_course = Course.query.get(form.choice.data)
+        if remove_course and remove_course in current_user.saved_courses:
+            # Remove the course from the saved list
+            current_user.saved_courses.remove(remove_course)
+            db.session.commit()
+            flash('Course removed from saved list.', 'success')
+        else:
+            flash('Course not found in saved list.', 'danger')
+
+        return redirect(url_for('saved_courses_display'))
