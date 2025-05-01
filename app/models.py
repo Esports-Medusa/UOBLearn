@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login
 from dataclasses import dataclass
 from datetime import datetime
-
+from sqlalchemy.orm import relationship, Mapped, mapped_column
 
 @dataclass
 class User(UserMixin, db.Model):
@@ -19,6 +19,7 @@ class User(UserMixin, db.Model):
     password_hash: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256))
     role: so.Mapped[str] = so.mapped_column(sa.String(10), default="student")
     type: so.Mapped[str] = so.mapped_column(sa.String(50))
+    saved_courses: Mapped[list['Course']] = relationship('Course', secondary='saved_courses', back_populates='saved_by', cascade='all, delete-orphan')
 
     __mapper_args__ = {
         "polymorphic_identity": "user",
@@ -70,7 +71,6 @@ class Mentor(User):
     def __repr__(self):
         return f'<Mentor {self.username}, expertise={self.expertise}>'
 
-
 # --- Admin ---
 @dataclass
 class Admin(User):
@@ -99,6 +99,8 @@ class Course(db.Model):
     difficulty: str = db.Column(db.String(50), nullable=False)
     subject: str = db.Column(db.String(100), nullable=False)
     url: str = db.Column(db.String(300), nullable=False)
+    saved_by: Mapped[list['User']] = relationship('User', secondary='saved_courses', back_populates='saved_courses')
+
 
     def __repr__(self):
         return f'<Course {self.title} ({self.platform})>'
@@ -112,15 +114,16 @@ class Notification(db.Model):
     is_read = db.Column(db.Boolean, default=False)
 
 
-# # --- SavedCourses ---
-# class SavedCourse(db.Model):
-#     __tablename__ = 'saved_courses'
-#
-#     user_id: int = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
-#     course_id: int = db.Column(db.Integer, db.ForeignKey('courses.id'), primary_key=True)
-#
-#     user = db.relationship('User', backref=db.backref('saved_courses', lazy='dynamic'))
-#     course = db.relationship('Course', backref=db.backref('saved_by', lazy='dynamic'))
-#
-#     def __repr__(self):
-#         return f'<SavedCourse user_id={self.user_id} course_id={self.course_id}>'
+# --- SavedCourses ---
+class SavedCourse(db.Model):
+    __tablename__ = 'saved_courses'
+
+    #establishing a many-to-many relationship
+    user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey('users.id'), primary_key=True)
+    user: Mapped['User'] = relationship('User', back_populates='saved_courses')
+    course_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey('courses.id'), primary_key=True)
+    course: Mapped['Course'] = relationship('Course', back_populates='saved_by')
+
+
+    def __repr__(self):
+        return f'<SavedCourse user_id={self.user_id} course_id={self.course_id}>'
