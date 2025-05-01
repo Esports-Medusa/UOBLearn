@@ -6,10 +6,14 @@ I created a new table in models.py to handle many-to-many relationship (SavedCou
 the user and course models were updated to create a relationship
 
 Add a "Save" button to the course listings so that users can save courses.
+
 First step was to create a route to save a course.
 To save a course the user must be logged into the system and this view handler checks the
 course exists and has not been previously saved by the user.
 
-Then I added another route to handle the display of all courses saved by the user.
+Then I added another route to handle the display of all courses saved by the user. the user
+can only see saved courses when they log into the app.
 
-Create a page/tab where users can view their saved courses
+I added a view handler that displays all courses using a card layout and I updated courses.html
+using some simple bootstrap to handle UI. >>>> to consider addition of images and pagination
+

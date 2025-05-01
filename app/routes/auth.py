@@ -63,6 +63,11 @@ def profile():
 
     return render_template('profile.html', user=current_user)
 
+#course recommendations
+@bp.route('/courses')
+def all_courses():
+    courses = Course.query.all()
+    return render_template('courses.html', courses=courses)
 
 #saving courses
 @bp.route('/save_course/<int:course_id>', methods=['POST'])
