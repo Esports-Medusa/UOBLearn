@@ -76,3 +76,9 @@ def save_course(course_id):
     else:
         flash('Course already saved.', 'info')
     return redirect(url_for('course_detail', course_id=course.id))
+
+#listing saved courses
+@bp.route('/saved_courses')
+@login_required
+def saved_courses_display():
+    return render_template('saved_courses.html', courses=current_user.saved_courses)

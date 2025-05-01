@@ -10,5 +10,6 @@ First step was to create a route to save a course.
 To save a course the user must be logged into the system and this view handler checks the
 course exists and has not been previously saved by the user.
 
+Then I added another route to handle the display of all courses saved by the user.
 
 Create a page/tab where users can view their saved courses
