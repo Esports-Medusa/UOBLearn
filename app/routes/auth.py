@@ -62,3 +62,17 @@ def profile():
             flash("Please fill out all fields.", "danger")
 
     return render_template('profile.html', user=current_user)
+
+
+#saving courses
+@bp.route('/save_course/<int:course_id>', methods=['POST'])
+@login_required
+def save_course(course_id):
+    course = Course.query.get_or_404(course_id)
+    if course not in current_user.saved_courses:
+        current_user.saved_courses.append(course)
+        db.session.commit()
+        flash('Course saved successfully!', 'success')
+    else:
+        flash('Course already saved.', 'info')
+    return redirect(url_for('course_detail', course_id=course.id))

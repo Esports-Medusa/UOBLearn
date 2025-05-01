@@ -18,6 +18,7 @@ class User(UserMixin, db.Model):
     password_hash: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256))
     role: so.Mapped[str] = so.mapped_column(sa.String(10), default="student")
     type: so.Mapped[str] = so.mapped_column(sa.String(50))
+    saved_courses = db.relationship('Course', secondary='saved_courses', back_populates='saved_by_users')
 
     __mapper_args__ = {
         "polymorphic_identity": "user",
@@ -94,6 +95,7 @@ class Course(db.Model):
     difficulty: str = db.Column(db.String(50), nullable=False)
     subject: str = db.Column(db.String(100), nullable=False)
     url: str = db.Column(db.String(300), nullable=False)
+    saved_by_user = db.relationship('User', secondary='saved_courses', back_populates='saved_courses')
 
     def __repr__(self):
         return f'<Course {self.title} ({self.platform})>'
