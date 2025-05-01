@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, current_user, login_required
 from app import db
 from app.forms import ChooseForm
-from app.models import User, Course
+from app.models import User, Course, Notification
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -46,8 +46,15 @@ def logout():
 @bp.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
+    notifications = []
+
+    if current_user.role == 'student':
+        notifications = Notification.query.filter_by(
+            user_id=current_user.id
+        ).order_by(Notification.timestamp.desc()).all()
+
     if current_user.role == 'admin' and request.method == 'POST':
-        # 处理课程添加表单
+        # Handle course addition form
         title = request.form.get('title')
         platform = request.form.get('platform')
         difficulty = request.form.get('difficulty')
@@ -55,14 +62,40 @@ def profile():
         url = request.form.get('url')
 
         if title and platform and difficulty and subject and url:
-            course = Course(title=title, platform=platform, difficulty=difficulty, subject=subject, url=url)
+            # 添加课程
+            course = Course(
+                title=title,
+                platform=platform,
+                difficulty=difficulty,
+                subject=subject,
+                url=url
+            )
             db.session.add(course)
             db.session.commit()
-            flash("New course added successfully!", "success")
-        else:
-            flash("Please fill out all fields.", "danger")
 
-    return render_template('profile.html', user=current_user)
+            # ========== Observer Pattern: send notification ==========
+            from app.observers import Subject
+            from app.concrete_observers import StudentObserver
+            from app.models import User
+
+            subject_center = Subject()
+
+            all_students = User.query.filter_by(role="student").all()
+            for student in all_students:
+                observer = StudentObserver(student)
+                subject_center.attach(observer)
+
+            message = f"📢 New course added: \"{title}\" (Subject: {subject})\nLearn more at: {url}"
+            subject_center.notify(message)
+
+            db.session.commit()
+            # ==============================================
+
+            flash("New course added successfully!", category="success")
+        else:
+            flash("Please fill out all fields.", category="danger")
+
+    return render_template('profile.html', user=current_user, notifications=notifications)
 
 #course recommendations
 @bp.route('/courses')
