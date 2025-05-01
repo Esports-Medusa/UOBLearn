@@ -103,38 +103,41 @@ def all_courses():
     courses = Course.query.all()
     return render_template('courses.html', courses=courses)
 
-#saving courses
+@bp.route('/saved_courses', methods=['GET', 'POST'])
+@login_required
+def saved_courses_display():
+    form = ChooseForm()
+
+    if form.validate_on_submit():
+        remove_course = Course.query.get(form.choice.data)  # Get the course from the form choice
+        if remove_course and remove_course in current_user.saved_courses:
+            # Remove the course from the saved list
+            current_user.saved_courses.remove(remove_course)
+            db.session.commit()
+            flash(f'{remove_course.title} removed from your saved list.', 'success')
+        else:
+            flash('Course not found in your saved list.', 'danger')
+
+        return redirect(url_for('saved_courses_display'))
+    
+    # Fetch the user's saved courses to display
+    saved_courses = current_user.saved_courses
+    return render_template('saved_courses.html', saved_courses=saved_courses, form=form)
+
+
 @bp.route('/save_course/<int:course_id>', methods=['POST'])
 @login_required
 def save_course(course_id):
     course = Course.query.get_or_404(course_id)
 
     if course in current_user.saved_courses:
-        # If the user clicks on a red heart, unsave course
+        # Unsave course if already saved
         current_user.saved_courses.remove(course)
-        flash('Course removed from saved courses.', 'info')
+        flash(f'{course.title} removed from your saved courses.', 'info')
     else:
-        # If user clicks on unfilled heart, save course
         current_user.saved_courses.append(course)
-        flash('Course saved successfully!', 'success')
+        flash(f'{course.title} saved to your courses!', 'success')
 
     db.session.commit()
 
-    return redirect(url_for('all_courses', course_id=course.id))
-
-#listing saved courses with option to remove from saved
-@bp.route('/saved_courses', methods = ['GET', 'POST'])
-@login_required
-def saved_courses_display():
-    form = ChooseForm()
-    if form.validate_on_submit():
-        remove_course = Course.query.get(form.choice.data)
-        if remove_course and remove_course in current_user.saved_courses:
-            # Remove the course from the saved list
-            current_user.saved_courses.remove(remove_course)
-            db.session.commit()
-            flash('Course removed from saved list.', 'success')
-        else:
-            flash('Course not found in saved list.', 'danger')
-
-        return redirect(url_for('saved_courses_display'))
+    return redirect(url_for('saved_courses_display'))  # Redirect back to the saved courses page
