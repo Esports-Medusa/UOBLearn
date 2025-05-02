@@ -11,6 +11,7 @@ bp = Blueprint('mentors', __name__, url_prefix='/mentors')
 # 示例：导师主页
 @bp.route('/', methods=['GET', 'POST'])
 def mentor_home():
+
     q = db.select(Mentor)
     mentors = db.session.scalars(q).all()
     # return redirect(url_for('product', id=int(form.choice.data)))
@@ -29,7 +30,6 @@ def mentor_home():
         db.session.commit()
 
     return render_template('mentor.html', title="Mentors", mentors=mentors, form=form)
-
 
 
 # 示例：导师接受预约

@@ -2,12 +2,75 @@
 {% import "bootstrap_wtf.html" as wtf %}
 
 {% block content %}
-<h1>Private Account Page</h1>
+<div class="container mt-4">
+  <h2>Welcome, {{ user.name }}</h2>
+  <p>Role: {{ user.role }}</p>
+  <p>E-mail: {{ user.email }}</p>
+  <hr>
 
-<p>Hello {{ current_user.username }}</p>
+  {% if user.role == 'admin' %}
+    <h3 class="mb-3">Add New Course</h3>
+    <form method="POST" class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Course Title</label>
+        <input type="text" name="title" class="form-control" required>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Platform</label>
+        <select name="platform" class="form-select" required>
+          <option>Coursera</option>
+          <option>FutureLearn</option>
+          <option>LinkedIn Learning</option>
+          <option>OpenLearn</option>
+          <option>Udemy</option>
+          <option>edX</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Difficulty</label>
+        <select name="difficulty" class="form-select" required>
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Subject</label>
+        <select name="subject" class="form-select" required>
+          <option>AI</option>
+          <option>Blockchain</option>
+          <option>Cloud Computing</option>
+          <option>Computer Vision</option>
+          <option>Cybersecurity</option>
+          <option>Data Science</option>
+          <option>ML</option>
+          <option>Mobile Development</option>
+          <option>Natural Language Processing</option>
+          <option>Web Development</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <label class="form-label">Course URL</label>
+        <input type="url" name="url" class="form-control" required>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Add Course</button>
+      </div>
+    </form>
 
-<p>This page is only available to you as the currently logged in user</p>
+  {% elif user.role == 'student' %}
+    <h3 class="mt-4">System Notifications</h3>
+    <ul>
+        {% for note in notifications %}
+            <li>{{ note.timestamp.strftime('%Y-%m-%d %H:%M') }} - {{ note.message }}</li>
+        {% else %}
+            <li>No Notifications.</li>
+        {% endfor %}
+    </ul>
 
-<p>The email address we have recorded for you is: {{ current_user.email }}</p>
-
+  {% elif user.role == 'mentor' %}
+    <h3 class="mt-4">Mentor Dashboard</h3>
+    <p class="text-muted">(Coming soon...)</p>
+  {% endif %}
+</div>
 {% endblock %}

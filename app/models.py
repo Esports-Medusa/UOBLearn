@@ -7,6 +7,7 @@ from app import db, login
 from dataclasses import dataclass
 from datetime import datetime
 
+
 @dataclass
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -124,6 +125,7 @@ class Notification(db.Model):
 #     def __repr__(self):
 #         return f'<SavedCourse user_id={self.user_id} course_id={self.course_id}>'
 
+
 @dataclass
 class Mentor(db.Model):
     __tablename__ = 'mentors'
@@ -145,3 +147,4 @@ class Appointment(db.Model):
 
     def __repr__(self):
         return f'Appointment(id={self.id}, mentor_name={self.mentor_name},topic={self.topic},  message= {self. message})'
+

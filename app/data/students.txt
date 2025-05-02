@@ -1,0 +1,10 @@
+Student1|student1|student1@uob.edu|password1|AI,ML,Cloud
+Student2|student2|student2@uob.edu|password2|AI,ML,Cloud
+Student3|student3|student3@uob.edu|password3|AI,ML,Cloud
+Student4|student4|student4@uob.edu|password4|AI,ML,Cloud
+Student5|student5|student5@uob.edu|password5|AI,ML,Cloud
+Student6|student6|student6@uob.edu|password6|AI,ML,Cloud
+Student7|student7|student7@uob.edu|password7|AI,ML,Cloud
+Student8|student8|student8@uob.edu|password8|AI,ML,Cloud
+Student9|student9|student9@uob.edu|password9|AI,ML,Cloud
+Student10|student10|student10@uob.edu|password10|AI,ML,Cloud

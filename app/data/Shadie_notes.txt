@@ -1,0 +1,24 @@
+Implementing the "save courses" functionality, we'll need to:
+
+Create a many-to-many relationship between users and courses so that a user can save multiple courses
+and a course can be saved by multiple users.
+I created a new table in models.py to handle many-to-many relationship (SavedCourses)
+the user and course models were updated to create a relationship
+
+Add a "Save" button to the course listings so that users can save courses.
+
+First step was to create a route to save a course.
+To save a course the user must be logged into the system and this view handler checks the
+course exists and has not been previously saved by the user.
+
+Then I added another route to handle the display of all courses saved by the user. the user
+can only see saved courses when they log into the app.
+
+I added a view handler that displays all courses using a card layout and I updated courses.html
+using some simple bootstrap to handle UI. For saving courses, i would like to indicate when a course
+ is saved by showing a filled heart, if not it will not be filled
+ >>>> to consider addition of images and pagination
+
+I updated the saved course display route with a Remove button option to just remove course from saved list
+Updated base.html ro add Saved Courses to NavBar
+
