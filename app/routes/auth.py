@@ -105,7 +105,13 @@ def all_courses():
 
 @bp.route('/saved_courses', methods=['GET', 'POST'])
 @login_required
+
 def saved_courses_display():
+
+    if current_user.role != "student":
+        flash("Only students can view saved courses.", "danger")
+        return redirect(url_for('all_courses'))
+
     form = ChooseForm()
 
     if form.validate_on_submit():
@@ -119,7 +125,7 @@ def saved_courses_display():
             flash('Course not found in your saved list.', 'danger')
 
         return redirect(url_for('saved_courses_display'))
-    
+
     # Fetch the user's saved courses to display
     saved_courses = current_user.saved_courses
     return render_template('saved_courses.html', saved_courses=saved_courses, form=form)
@@ -127,8 +133,13 @@ def saved_courses_display():
 
 @bp.route('/save_course/<int:course_id>', methods=['POST'])
 @login_required
+
 def save_course(course_id):
     course = Course.query.get_or_404(course_id)
+
+    if current_user.role != "student":
+        flash("Only students can save courses.", "danger")
+        return redirect(url_for('all_courses'))
 
     if course in current_user.saved_courses:
         # Unsave course if already saved

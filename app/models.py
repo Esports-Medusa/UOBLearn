@@ -19,7 +19,6 @@ class User(UserMixin, db.Model):
     password_hash: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256))
     role: so.Mapped[str] = so.mapped_column(sa.String(10), default="student")
     type: so.Mapped[str] = so.mapped_column(sa.String(50))
-    saved_courses: Mapped[list['Course']] = relationship('Course', secondary='saved_courses', back_populates='saved_by', cascade='all, delete-orphan')
 
     __mapper_args__ = {
         "polymorphic_identity": "user",
@@ -46,6 +45,8 @@ class Student(User):
 
     id: so.Mapped[int] = so.mapped_column(sa.ForeignKey('users.id'), primary_key=True)
     interests: so.Mapped[str] = so.mapped_column(sa.String(256))
+    saved_courses: Mapped[list['Course']] = relationship('Course', secondary='saved_courses', back_populates='saved_by',
+                                                         cascade='all, delete-orphan')
 
     __mapper_args__ = {
         "polymorphic_identity": "student",
@@ -99,7 +100,7 @@ class Course(db.Model):
     difficulty: str = db.Column(db.String(50), nullable=False)
     subject: str = db.Column(db.String(100), nullable=False)
     url: str = db.Column(db.String(300), nullable=False)
-    saved_by: Mapped[list['User']] = relationship('User', secondary='saved_courses', back_populates='saved_courses')
+    saved_by: Mapped[list['Student']] = relationship('Student', secondary='saved_courses', back_populates='saved_courses')
 
 
     def __repr__(self):
@@ -118,9 +119,9 @@ class Notification(db.Model):
 class SavedCourse(db.Model):
     __tablename__ = 'saved_courses'
 
-    #establishing a many-to-many relationship
-    user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey('users.id'), primary_key=True)
-    user: Mapped['User'] = relationship('User', back_populates='saved_courses')
+    #establishing a many-to-many relationship between student and courses
+    user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey('students.id'), primary_key=True)
+    user: Mapped['Student'] = relationship('Student', back_populates='saved_courses')
     course_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey('courses.id'), primary_key=True)
     course: Mapped['Course'] = relationship('Course', back_populates='saved_by')
 

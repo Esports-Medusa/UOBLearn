@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if current_user.role == 'student' %}
 <div class="container mt-4">
     <h2>Your Saved Courses</h2>
 
@@ -30,4 +31,7 @@
     <p>You have no saved courses yet.</p>
     {% endif %}
 </div>
+{% else %}
+  <p>This page is only available to students.</p>
+{% endif %}
 {% endblock %}
