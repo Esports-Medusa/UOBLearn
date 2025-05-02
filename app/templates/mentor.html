@@ -2,6 +2,40 @@
 {% import "bootstrap_wtf.html" as wtf %}
 
 {% block content %}
+<h1>Mentors</h1>
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 
+<div class="row">
+<div class="col-lg-8">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    {% for mentor in mentors %}
+        <tr>
+            <td class="text-start text-nowrap">{{ mentor.name}}</td>
+            <td class='text-end'>{{ mentor.subject}}</td>
+            <td class='text-end'>{{ mentor.description }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+    <h2 class="mt-5">Book an Appointment</h2>
+    <div class="col-lg-4">
+        {{ wtf.quick_form(form, action="", method="post", id="", novalidate=True, autofocus=False) }}
+    </div>
+</div>
 
 {% endblock %}

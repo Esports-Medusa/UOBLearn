@@ -21,3 +21,7 @@ app.register_blueprint(courses.bp)
 app.register_blueprint(mentor.bp)
 
 __all__ = ['app', 'db', 'login']
+
+@app.shell_context_processor
+def make_shell_context():
+    return dict(db=db)
