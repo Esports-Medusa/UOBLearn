@@ -28,7 +28,7 @@ def mentor_home():
         db.session.add(new_appointment)
         db.session.commit()
 
-    return render_template('mentors.html', title="Mentors", mentors=mentors, form=form)
+    return render_template('mentor.html', title="Mentors", mentors=mentors, form=form)
 
 
 
