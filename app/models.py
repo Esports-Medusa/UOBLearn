@@ -103,48 +103,9 @@ class Course(db.Model):
     def __repr__(self):
         return f'<Course {self.title} ({self.platform})>'
 
-# --- New Course Notification ---
 class Notification(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     message = db.Column(db.String(256), nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     is_read = db.Column(db.Boolean, default=False)
-
-
-# # --- SavedCourses ---
-# class SavedCourse(db.Model):
-#     __tablename__ = 'saved_courses'
-#
-#     user_id: int = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
-#     course_id: int = db.Column(db.Integer, db.ForeignKey('courses.id'), primary_key=True)
-#
-#     user = db.relationship('User', backref=db.backref('saved_courses', lazy='dynamic'))
-#     course = db.relationship('Course', backref=db.backref('saved_by', lazy='dynamic'))
-#
-#     def __repr__(self):
-#         return f'<SavedCourse user_id={self.user_id} course_id={self.course_id}>'
-
-
-@dataclass
-class Mentor(db.Model):
-    __tablename__ = 'mentors'
-    id: so.Mapped[int] = so.mapped_column(primary_key=True)
-    name: so.Mapped[str] = so.mapped_column(sa.String(64))
-    subject: so.Mapped[str] = so.mapped_column(sa.String(64))
-    description: so.Mapped[str] = so.mapped_column(sa.Text)
-
-    def __repr__(self):
-        return f'Mentor(id={self.id}, name={self.name},subject={self.subject} description={self.description})'
-
-@dataclass #need to connect to forms
-class Appointment(db.Model):
-    __tablename__ = 'Appointments'
-    id: so.Mapped[int] = so.mapped_column(primary_key=True)
-    mentor_name: so.Mapped[str] = so.mapped_column(sa.String(64))
-    topic: so.Mapped[str] = so.mapped_column(sa.String(64))
-    message: so.Mapped[str] = so.mapped_column(sa.Text)
-
-    def __repr__(self):
-        return f'Appointment(id={self.id}, mentor_name={self.mentor_name},topic={self.topic},  message= {self. message})'
-

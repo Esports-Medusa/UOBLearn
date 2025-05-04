@@ -2,12 +2,27 @@
 {% import "bootstrap_wtf.html" as wtf %}
 
 {% block content %}
-  <h2>Login</h2>
-  <form method="POST">
-    <label>Email:</label>
-    <input type="text" name="email" required><br>
-    <label>Password:</label>
-    <input type="password" name="password" required><br>
-    <button type="submit">Login</button>
+<div class="container mt-5" style="max-width: 500px;">
+  <h2 class="mb-4 text-center">Login</h2>
+  <form method="POST" class="needs-validation" novalidate>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" required>
+      <div class="invalid-feedback">
+        Please enter your email.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" required>
+      <div class="invalid-feedback">
+        Please enter your password.
+      </div>
+    </div>
+    <div class="d-grid">
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
   </form>
+</div>
 {% endblock %}
+
