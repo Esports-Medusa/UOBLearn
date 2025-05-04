@@ -1,10 +1,13 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, current_user, login_required
 from app import db
-from app.forms import ChooseForm
 from app.models import User, Course, Notification
+from app.notification import NotificationCenter
+from app.forms import StudentProfileEditForm, MentorProfileEditForm
+
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
+notification_center = NotificationCenter()
 
 
 # login
@@ -28,12 +31,6 @@ def login():
     return render_template('login.html')
 
 
-# register page
-@bp.route('/register')
-def register():
-    return render_template('register.html')
-
-
 # logout
 @bp.route('/logout')
 @login_required
@@ -42,19 +39,81 @@ def logout():
     return redirect(url_for('auth.login'))
 
 
-# User Profile Page
 @bp.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
     notifications = []
+    student_form = None
+    mentor_form = None
 
     if current_user.role == 'student':
+        student_form = StudentProfileEditForm(obj=current_user)
+
+        # 回显 interests 为列表
+        student_form.interests.data = current_user.interests.split(',') if current_user.interests else []
+
+        if student_form.validate_on_submit():
+            current_user.username = student_form.username.data
+            current_user.interests = ",".join(student_form.interests.data)
+            db.session.commit()
+            flash("Profile updated!", "success")
+            return redirect(url_for('auth.profile'))
+
+        # 学生通知列表
         notifications = Notification.query.filter_by(
             user_id=current_user.id
         ).order_by(Notification.timestamp.desc()).all()
 
+    elif current_user.role == 'mentor':
+        mentor_form = MentorProfileEditForm()
+
+        if request.method == 'GET':
+            mentor_form.username.data = current_user.username
+            mentor_form.expertise.data = current_user.expertise.split(',') if current_user.expertise else []
+            mentor_form.self_introduction.data = current_user.self_introduction
+
+            # 解析 time_slots 字符串为字段对象
+            mentor_form.time_slots.entries.clear()
+            if current_user.available_hours:
+                for slot in current_user.available_hours.split('; '):
+                    try:
+                        day, times = slot.split(' ')
+                        start, end = times.split('-')
+
+                        # ✅ 转换为 datetime.time 类型
+                        start_time = datetime.strptime(start, "%H:%M").time()
+                        end_time = datetime.strptime(end, "%H:%M").time()
+
+                        mentor_form.time_slots.append_entry({
+                            'day': day,
+                            'start_time': start_time,
+                            'end_time': end_time
+                        })
+                    except Exception as e:
+                        print("TimeSlot parse error:", e)
+                        continue
+
+        elif mentor_form.validate_on_submit():
+            current_user.username = mentor_form.username.data
+            current_user.expertise = ",".join(mentor_form.expertise.data)
+            current_user.self_introduction = mentor_form.self_introduction.data
+
+            # ✅ 将 time_slots 重新转换为字符串存入数据库
+            time_slot_strs = []
+            for slot_form in mentor_form.time_slots.entries:
+                day = slot_form.form.day.data
+                start = slot_form.form.start_time.data.strftime("%H:%M")
+                end = slot_form.form.end_time.data.strftime("%H:%M")
+                time_slot_strs.append(f"{day} {start}-{end}")
+
+            current_user.available_hours = "; ".join(time_slot_strs)
+
+            db.session.commit()
+            flash("Profile updated!", "success")
+            return redirect(url_for('auth.profile'))
+
+    # ============ 管理员添加课程逻辑 ============
     if current_user.role == 'admin' and request.method == 'POST':
-        # Handle course addition form
         title = request.form.get('title')
         platform = request.form.get('platform')
         difficulty = request.form.get('difficulty')
@@ -62,24 +121,22 @@ def profile():
         url = request.form.get('url')
 
         if title and platform and difficulty and subject and url:
-            # 添加课程
-            course = Course(
+            new_course = Course(
                 title=title,
                 platform=platform,
                 difficulty=difficulty,
                 subject=subject,
                 url=url
             )
-            db.session.add(course)
+            db.session.add(new_course)
             db.session.commit()
 
-            # ========== Observer Pattern: send notification ==========
+            # 通知学生逻辑（Observer Pattern）
             from app.observers import Subject
             from app.concrete_observers import StudentObserver
             from app.models import User
 
             subject_center = Subject()
-
             all_students = User.query.filter_by(role="student").all()
             for student in all_students:
                 observer = StudentObserver(student)
@@ -89,52 +146,17 @@ def profile():
             subject_center.notify(message)
 
             db.session.commit()
-            # ==============================================
-
             flash("New course added successfully!", category="success")
         else:
             flash("Please fill out all fields.", category="danger")
 
-    return render_template('profile.html', user=current_user, notifications=notifications)
+    return render_template(
+        'profile.html',
+        user=current_user,
+        notifications=notifications,
+        student_form=student_form,
+        mentor_form=mentor_form
+    )
 
-#course recommendations
-@bp.route('/courses')
-def all_courses():
-    courses = Course.query.all()
-    return render_template('courses.html', courses=courses)
 
-#saving courses
-@bp.route('/save_course/<int:course_id>', methods=['POST'])
-@login_required
-def save_course(course_id):
-    course = Course.query.get_or_404(course_id)
 
-    if course in current_user.saved_courses:
-        # If the user clicks on a red heart, unsave course
-        current_user.saved_courses.remove(course)
-        flash('Course removed from saved courses.', 'info')
-    else:
-        # If user clicks on unfilled heart, save course
-        current_user.saved_courses.append(course)
-        flash('Course saved successfully!', 'success')
-
-    db.session.commit()
-
-    return redirect(url_for('all_courses', course_id=course.id))
-
-#listing saved courses with option to remove from saved
-@bp.route('/saved_courses', methods = ['GET', 'POST'])
-@login_required
-def saved_courses_display():
-    form = ChooseForm()
-    if form.validate_on_submit():
-        remove_course = Course.query.get(form.choice.data)
-        if remove_course and remove_course in current_user.saved_courses:
-            # Remove the course from the saved list
-            current_user.saved_courses.remove(remove_course)
-            db.session.commit()
-            flash('Course removed from saved list.', 'success')
-        else:
-            flash('Course not found in saved list.', 'danger')
-
-        return redirect(url_for('saved_courses_display'))

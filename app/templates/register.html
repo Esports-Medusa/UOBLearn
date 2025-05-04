@@ -1,7 +1,147 @@
 {% extends "base.html" %}
-{% import "bootstrap_wtf.html" as wtf %}
-
 {% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Register</h2>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
 
+        <!-- 通用字段 -->
+        <div class="mb-3">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control") }}
+            {% for error in form.name.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
 
+        <div class="mb-3">
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control") }}
+            {% for error in form.username.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }}
+            {% for error in form.email.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.role.label(class="form-label") }}
+            {{ form.role(class="form-select", id="role-select") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control") }}
+            {% for error in form.password.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.confirm_password.label(class="form-label") }}
+            {{ form.confirm_password(class="form-control") }}
+            {% for error in form.confirm_password.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- 学生字段 -->
+        <div id="student-fields" style="display: none;">
+            <div class="mb-3">
+                {{ form.interests.label(class="form-label") }}
+                {{ form.interests(class="form-select", multiple=True) }}
+            </div>
+        </div>
+
+        <!-- 导师字段 -->
+        <div id="mentor-fields" style="display: none;">
+            <div class="mb-3">
+                {{ form.expertise.label(class="form-label") }}
+                {{ form.expertise(class="form-select", multiple=True) }}
+            </div>
+
+            <!-- 替换 available_hours 为 time_slots -->
+            <div class="mb-3">
+                <label class="form-label">Available Hours</label>
+                <div id="time-slots-container">
+                    {% for slot in form.time_slots %}
+                        <div class="row g-2 mb-2">
+                            <div class="col-md-4">{{ slot.day(class="form-select") }}</div>
+                            <div class="col-md-4">{{ slot.start_time(class="form-control") }}</div>
+                            <div class="col-md-4">{{ slot.end_time(class="form-control") }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="add-slot-btn">Add Time Slot</button>
+            </div>
+
+            <div class="mb-3">
+                {{ form.self_introduction.label(class="form-label") }}
+                {{ form.self_introduction(class="form-control", rows="3") }}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+</div>
+
+<!-- Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const roleSelect = document.getElementById('role-select');
+        const studentFields = document.getElementById('student-fields');
+        const mentorFields = document.getElementById('mentor-fields');
+
+        function toggleFields() {
+            const role = roleSelect.value;
+            studentFields.style.display = (role === 'student') ? 'block' : 'none';
+            mentorFields.style.display = (role === 'mentor') ? 'block' : 'none';
+        }
+
+        roleSelect.addEventListener('change', toggleFields);
+        toggleFields();
+
+        $('select[multiple]').select2({
+            width: '100%',
+            placeholder: "Select one or more",
+            allowClear: true
+        });
+
+        // 动态添加 time slot 表单
+        document.getElementById('add-slot-btn')?.addEventListener('click', function () {
+            const container = document.getElementById('time-slots-container');
+            const index = container.children.length;
+
+            const newSlot = `
+                <div class="row g-2 mb-2">
+                    <div class="col-md-4">
+                        <select name="time_slots-${index}-day" class="form-select" required>
+                            <option value="">Select Day</option>
+                            <option value="Mon">Monday</option>
+                            <option value="Tue">Tuesday</option>
+                            <option value="Wed">Wednesday</option>
+                            <option value="Thu">Thursday</option>
+                            <option value="Fri">Friday</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="time" name="time_slots-${index}-start_time" class="form-control" required>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="time" name="time_slots-${index}-end_time" class="form-control" required>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', newSlot);
+        });
+    });
+</script>
 {% endblock %}

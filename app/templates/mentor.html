@@ -2,40 +2,61 @@
 {% import "bootstrap_wtf.html" as wtf %}
 
 {% block content %}
-<h1>Mentors</h1>
-    {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class="flashes">
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
+<div class="container mt-4">
+    <h2 class="mb-4">All Mentors</h2>
 
-<div class="row">
-<div class="col-lg-8">
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Subject</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    {% for mentor in mentors %}
-        <tr>
-            <td class="text-start text-nowrap">{{ mentor.name}}</td>
-            <td class='text-end'>{{ mentor.subject}}</td>
-            <td class='text-end'>{{ mentor.description }}</td>
-        </tr>
-    {% endfor %}
-</table>
+    <form method="get" action="{{ url_for('mentor.mentor_list') }}" class="input-group mb-4">
+        <input type="text" name="search" class="form-control" placeholder="Search by name" value="{{ search }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
 
-    <h2 class="mt-5">Book an Appointment</h2>
-    <div class="col-lg-4">
-        {{ wtf.quick_form(form, action="", method="post", id="", novalidate=True, autofocus=False) }}
-    </div>
+    {% if mentors.items %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for mentor in mentors.items %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ mentor.name }}</h5>
+                            <p class="card-text">
+                                <strong>Expertise:</strong> {{ mentor.expertise }}<br>
+                                <strong>Available Hours:</strong> {{ mentor.available_hours }}<br>
+                                <strong>Introduction:</strong> {{ mentor.self_introduction }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted">No mentors found.</p>
+    {% endif %}
+
+    <nav aria-label="Mentor pagination" class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if mentors.has_prev %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('mentor.mentor_list', page=mentors.prev_num, search=search) }}">Previous</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Previous</span>
+                </li>
+            {% endif %}
+
+            <li class="page-item disabled">
+                <span class="page-link">Page {{ mentors.page }} of {{ mentors.pages }}</span>
+            </li>
+
+            {% if mentors.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('mentor.mentor_list', page=mentors.next_num, search=search) }}">Next</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Next</span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
-
 {% endblock %}
