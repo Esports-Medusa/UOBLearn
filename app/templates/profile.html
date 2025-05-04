@@ -9,8 +9,54 @@
   <hr>
 
   {% if user.role == 'admin' %}
-    <!-- Admin Add Course Form (保持不变) -->
-    ...（略，为节省空间保留你原有内容）...
+    <h3 class="mb-3">Add New Course</h3>
+    <form method="POST" class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Course Title</label>
+        <input type="text" name="title" class="form-control" required>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Platform</label>
+        <select name="platform" class="form-select" required>
+          <option>Coursera</option>
+          <option>FutureLearn</option>
+          <option>LinkedIn Learning</option>
+          <option>OpenLearn</option>
+          <option>Udemy</option>
+          <option>edX</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Difficulty</label>
+        <select name="difficulty" class="form-select" required>
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Subject</label>
+        <select name="subject" class="form-select" required>
+          <option>AI</option>
+          <option>Blockchain</option>
+          <option>Cloud Computing</option>
+          <option>Computer Vision</option>
+          <option>Cybersecurity</option>
+          <option>Data Science</option>
+          <option>ML</option>
+          <option>Mobile Development</option>
+          <option>Natural Language Processing</option>
+          <option>Web Development</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <label class="form-label">Course URL</label>
+        <input type="url" name="url" class="form-control" required>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Add Course</button>
+      </div>
+    </form>
 
   {% elif user.role == 'student' %}
     <!-- ✅ 学生修改信息表单 -->
@@ -30,15 +76,26 @@
       </div>
     </form>
 
+    <hr class="my-4">
+
     <!-- ✅ 系统通知 -->
     <h3 class="mt-4">System Notifications</h3>
-    <ul>
-      {% for note in notifications %}
-        <li>{{ note.timestamp.strftime('%Y-%m-%d %H:%M') }} - {{ note.message }}</li>
-      {% else %}
-        <li>No Notifications.</li>
-      {% endfor %}
-    </ul>
+
+    {% if notifications %}
+      <div class="mt-3">
+        {% for note in notifications %}
+          <div class="alert alert-info" role="alert">
+            <small class="text-muted">{{ note.timestamp.strftime('%Y-%m-%d %H:%M') }}</small><br>
+            {{ note.message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-secondary mt-3" role="alert">
+        No Notifications.
+      </div>
+    {% endif %}
+
 
   {% elif user.role == 'mentor' %}
     <!-- ✅ 导师修改信息表单 -->
