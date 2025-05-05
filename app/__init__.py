@@ -14,12 +14,13 @@ login.login_view = 'auth.login'
 
 migrate = Migrate(app, db)
 
-from app.routes import auth, courses, mentor, main, register, meeting
+from app.routes import auth, courses, mentor, main, register, meeting, saved_courses
 app.register_blueprint(main.bp)
 app.register_blueprint(auth.bp)
 app.register_blueprint(courses.bp)
 app.register_blueprint(mentor.bp)
 app.register_blueprint(register.bp)
 app.register_blueprint(meeting.bp)
+app.register_blueprint(saved_courses.bp)
 
 __all__ = ['app', 'db', 'login']

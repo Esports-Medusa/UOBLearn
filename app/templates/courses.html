@@ -2,6 +2,87 @@
 {% import "bootstrap_wtf.html" as wtf %}
 
 {% block content %}
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-4">All Courses</h2>
+        <a href="{{ url_for('saved_courses_bp.saved_courses') }}" class="btn btn-success">Saved/Favourite</a>
+    </div>
+
+    <form method="get" action="{{ url_for('course.course_list') }}" class="input-group mb-4">
+        <input type="text" name="search" class="form-control" placeholder="Search by course title" value="{{ search }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {% if courses.items %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for course in courses.items %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ course.title }}</h5>
+                            <p class="card-text">
+                                <strong>Platform:</strong> {{ course.platform }}<br>
+                                <strong>Difficulty:</strong> {{ course.difficulty }}<br>
+                                <strong>Subject:</strong> {{ course.subject }}<br>
+                                <a href="{{ course.url }}" target="_blank" class="btn btn-outline-secondary btn-sm">Go to Course</a>
+                                <a href="{{ url_for('saved_courses_bp.save_course', course_id=course.id, type='saved') }}" class="btn btn-outline-primary btn-sm">Save</a>
+                                <a href="{{ url_for('saved_courses_bp.save_course', course_id=course.id, type='favourite') }}" class="btn btn-outline-warning btn-sm">Favourite</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted">No courses found.</p>
+    {% endif %}
+
+    <nav aria-label="Course pagination" class="mt-4">
+        <ul class="pagination justify-content-center flex-wrap">
+
+            {# 左侧 - 上一页按钮 #}
+            {% if courses.has_prev %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('course.course_list', page=1, search=search) }}">&laquo;</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('course.course_list', page=courses.prev_num, search=search) }}">Previous</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                <li class="page-item disabled"><span class="page-link">Previous</span></li>
+            {% endif %}
+
+            {# 中间 - 显示当前页附近页码 #}
+            {% for p in page_range %}
+                <li class="page-item {% if p == courses.page %}active{% endif %}">
+                    <a class="page-link" href="{{ url_for('course.course_list', page=p, search=search) }}">{{ p }}</a>
+                </li>
+            {% endfor %}
 
 
+            {# 右侧 - 下一页按钮 #}
+            {% if courses.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('course.course_list', page=courses.next_num, search=search) }}">Next</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('course.course_list', page=courses.pages, search=search) }}">&raquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link">Next</span></li>
+                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+            {% endif %}
+        </ul>
+
+        {# 跳转到页码表单 #}
+        <form method="get" action="{{ url_for('course.course_list') }}" class="d-flex justify-content-center mt-3 flex-wrap" style="gap: 10px; max-width: 300px; margin: auto;">
+            <input type="number" name="page" min="1" max="{{ courses.pages }}" class="form-control form-control-sm" placeholder="Go to page #" required>
+            <input type="hidden" name="search" value="{{ search }}">
+            <button type="submit" class="btn btn-sm btn-outline-primary">Go</button>
+        </form>
+    </nav>
+
+</div>
 {% endblock %}

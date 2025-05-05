@@ -19,6 +19,7 @@ class User(UserMixin, db.Model):
     password_hash: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256))
     role: so.Mapped[str] = so.mapped_column(sa.String(10), default="student")
     type: so.Mapped[str] = so.mapped_column(sa.String(50))
+    saved_courses = db.relationship("SavedCourse", back_populates="user", cascade="all, delete-orphan")
 
     __mapper_args__ = {
         "polymorphic_identity": "user",
@@ -136,6 +137,17 @@ class Course(db.Model):
 
     def __repr__(self):
         return f'<Course {self.title} ({self.platform})>'
+
+
+class SavedCourse(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    course_id = db.Column(db.Integer, db.ForeignKey('courses.id'))
+    type = db.Column(db.String(10))  # "saved" or "favourite"
+
+    user = db.relationship("User", back_populates="saved_courses")
+    course = db.relationship("Course")
+
 
 class Notification(db.Model):
     id = db.Column(db.Integer, primary_key=True)
