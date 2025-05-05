@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% import "bootstrap_wtf.html" as wtf %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-primary"><i class="bi bi-calendar3"></i> My Meetings</h2>
+
+    {% if meetings %}
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>{{ 'Mentor' if is_student else 'Student' }}</th>
+                    <th>Time</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Response</th>
+                    {% if not is_student %}
+                        <th>Action</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for meeting in meetings %}
+                <tr>
+                    <td>{{ meeting.mentor.name if is_student else meeting.student.name }}</td>
+                    <td><i class="bi bi-clock"></i> {{ meeting.meeting_time.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>{{ meeting.description }}</td>
+                    <td>
+                        {% if meeting.status == 'pending' %}
+                            <span class="badge bg-warning text-dark">Pending</span>
+                        {% elif meeting.status == 'accepted' %}
+                            <span class="badge bg-success">Accepted</span>
+                        {% else %}
+                            <span class="badge bg-danger">Rejected</span>
+                        {% endif %}
+                        {% if is_student and meeting.status != 'pending' and not meeting.is_viewed_by_student %}
+                            <span class="badge bg-danger ms-2">New!</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ meeting.response_message or "-" }}</td>
+                    {% if not is_student %}
+                        <td>
+                            {% if meeting.status == 'pending' %}
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#respondModal{{ meeting.id }}">
+                                <i class="bi bi-reply"></i> Respond
+                            </button>
+                            {% else %}
+                            <span class="text-muted">-</span>
+                            {% endif %}
+                        </td>
+                    {% endif %}
+                </tr>
+
+                <!-- Modal -->
+                <div class="modal fade" id="respondModal{{ meeting.id }}" tabindex="-1" aria-labelledby="respondLabel{{ meeting.id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form method="post" action="{{ url_for('meeting.respond_to_meeting', meeting_id=meeting.id) }}">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="respondLabel{{ meeting.id }}"><i class="bi bi-chat-left-text"></i> Respond to Meeting</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="status{{ meeting.id }}" class="form-label">Decision</label>
+                                        <select name="status" id="status{{ meeting.id }}" class="form-select" required>
+                                            <option value="">Select an option</option>
+                                            <option value="accepted">Accept</option>
+                                            <option value="rejected">Reject</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="response_message{{ meeting.id }}" class="form-label">Response Message</label>
+                                        <textarea class="form-control" name="response_message" id="response_message{{ meeting.id }}" rows="3" required placeholder="e.g., Let's meet at the lab at 3PM..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary"><i class="bi bi-send-fill"></i> Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <p class="text-muted">No meeting records found.</p>
+    {% endif %}
+</div>
+{% endblock %}

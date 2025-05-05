@@ -22,6 +22,41 @@
                                 <strong>Available Hours:</strong> {{ mentor.available_hours }}<br>
                                 <strong>Introduction:</strong> {{ mentor.self_introduction }}
                             </p>
+
+                            {% if current_user.is_authenticated and current_user.role == 'student' %}
+                                <button class="btn btn-outline-primary mt-2" data-bs-toggle="modal" data-bs-target="#meetingModal{{ mentor.id }}">
+                                    Book Mentor
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="meetingModal{{ mentor.id }}" tabindex="-1" aria-labelledby="modalLabel{{ mentor.id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <form method="post" action="{{ url_for('meeting.create_meeting') }}">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalLabel{{ mentor.id }}">Appointment {{ mentor.name }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="mentor_id" value="{{ mentor.id }}">
+                                                    <div class="mb-3">
+                                                        <label for="meeting_time{{ mentor.id }}" class="form-label">Appointment time</label>
+                                                        <input type="datetime-local" class="form-control" name="meeting_time" id="meeting_time{{ mentor.id }}" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="description{{ mentor.id }}" class="form-label">Description</label>
+                                                        <textarea class="form-control" name="description" id="description{{ mentor.id }}" rows="3" required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">exit</button>
+                                                    <button type="submit" class="btn btn-primary">send</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

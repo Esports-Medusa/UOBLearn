@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 from flask_login import UserMixin
@@ -45,6 +45,10 @@ class Student(User):
 
     id: so.Mapped[int] = so.mapped_column(sa.ForeignKey('users.id'), primary_key=True)
     interests: so.Mapped[str] = so.mapped_column(sa.String(256))
+    meetings_sent: so.Mapped[List["Meeting"]] = db.relationship(
+        "Meeting", back_populates="student", cascade="all, delete-orphan", lazy=True
+    )
+
 
     __mapper_args__ = {
         "polymorphic_identity": "student",
@@ -62,6 +66,10 @@ class Mentor(User):
     expertise: so.Mapped[str] = so.mapped_column(sa.String(256))
     self_introduction: so.Mapped[str] = so.mapped_column(sa.Text)
     available_hours: so.Mapped[str] = so.mapped_column(sa.String(256))
+    meetings_received: so.Mapped[List["Meeting"]] = db.relationship(
+        "Meeting", back_populates="mentor", cascade="all, delete-orphan", lazy=True
+    )
+
 
     __mapper_args__ = {
         "polymorphic_identity": "mentor",
@@ -84,6 +92,32 @@ class Admin(User):
 
     def __repr__(self):
         return f'<Admin {self.username}>'
+
+
+# --- Meeting ---
+@dataclass
+class Meeting(db.Model):
+    __tablename__ = 'meetings'
+
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    student_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey('students.id'), nullable=False)
+    mentor_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey('mentors.id'), nullable=False)
+    meeting_time: so.Mapped[datetime] = so.mapped_column(sa.DateTime, nullable=False)
+    description: so.Mapped[str] = so.mapped_column(sa.Text, nullable=False)
+    status: so.Mapped[str] = so.mapped_column(sa.String(10), default='pending')  # 'pending', 'accepted', 'rejected'
+    response_message: so.Mapped[Optional[str]] = so.mapped_column(sa.Text)
+    created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=datetime.utcnow)
+    is_viewed_by_student: so.Mapped[bool] = so.mapped_column(sa.Boolean, default=False)
+
+    # Relationships
+    student = db.relationship("Student", back_populates="meetings_sent", lazy=True)
+    mentor = db.relationship("Mentor", back_populates="meetings_received", lazy=True)
+
+    def __repr__(self):
+        return f'<Meeting {self.id} from Student {self.student_id} to Mentor {self.mentor_id}, status={self.status}>'
+
+
+
 
 @login.user_loader
 def load_user(user_id):
