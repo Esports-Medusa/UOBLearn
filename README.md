@@ -128,3 +128,70 @@ You may use the following pre-defined accounts for testing login:
 | admin1@uob.edu      | password1  |
 | admin2@uob.edu      | password2  |
 
+
+
+
+### contribution
+
+---
+
+| Name             | ID      | Contribution (%) | Key Tasks |
+| ---------------- | ------- | ---------------- |-----------|
+| Nadiya Miah      | 2889339 | 20%              |           |
+| Alisha Thapa     | 2167059 | 20%              |           |
+| Nusrat Begum     | 2246349 | 20%              |           |
+| Shadie Abdulkawi | 2878514 | 20%              |           |
+| Jiaqi Yuan       | 2869046 | 20%              |           |
+
+#### Additional Comments (By Team Member)
+
+**👩‍💻 Nadiya Miah**
+
+
+---
+
+**👩‍💻 Alisha Thapa**
+
+
+---
+
+**👩‍💻 Nusrat Begum**
+
+
+
+---
+
+**👩‍💻 Shadie Abdulkawi**
+
+
+
+---
+
+**👩‍💻 Jiaqi Yuan**
+
+username: QiQi / Esports-Medusa
+
+> **🗓 Work Log**
+
+| Date       | Description                                                                                                                               |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| 2025-04-29 | Completed the main page and navigation bar for the starter code.                                                                          |
+| 2025-04-30 | Completed the login and profile pages for the starter code, and finished initializing the database.                                       |
+| 2025-05-01 | Resolved merge conflict errors caused by an incorrect merge into the main branch, within the fix-broken-main branch.                      |
+| 2025-05-02 | Reviewed Alisha Thapa’s merge request, made minor adjustments, and completed the merge.                                                   |
+| 2025-05-04 | Improved the UI of the login page. Completed the register page and the new course notification feature.                                   |
+| 2025-05-05 | Completed the Mentor Appointment feature and the Save/Favourite Course feature.                                                           |
+| 2025-05-06 | Fixed a bug in the register page where students and mentors couldn’t register due to validation checking fields intended for other roles. |
+
+> **🛠️ Implemented Features**
+- `SavedCourses` many-to-many model between users and courses
+- Backend route to save/fetch/remove saved courses
+- Frontend "Save" button and saved course list page
+- Fallback messages for empty states
+- Chronological sorting of saved courses
+- Integrated login-check to restrict access to saved items
+- Error handling for invalid course saves
+
+> **📄 Documentation & Coordination**
+- Wrote the 'How to Run the Project' section in the `README.md` file.
+- Coordinated version control structure and Git clean-up
