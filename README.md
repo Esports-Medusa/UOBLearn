@@ -19,7 +19,7 @@ Ensure you have the following installed:
 - A database system (e.g., SQLite, MySQL, or PostgreSQL)
 - Git (optional, for cloning the repository)
 
----
+
 
 #### 2. **Clone the Repository**
 
