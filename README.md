@@ -184,13 +184,10 @@ username: QiQi / Esports-Medusa
 | 2025-05-06 | Fixed a bug in the register page where students and mentors couldn’t register due to validation checking fields intended for other roles. |
 
 > **🛠️ Implemented Features**
-- `SavedCourses` many-to-many model between users and courses
-- Backend route to save/fetch/remove saved courses
-- Frontend "Save" button and saved course list page
-- Fallback messages for empty states
-- Chronological sorting of saved courses
-- Integrated login-check to restrict access to saved items
-- Error handling for invalid course saves
+- **User registration/login functionality**  
+- **Notify all students when a new course is added**  
+- **Save/favourite course feature**  
+- **Student–mentor appointment scheduling feature**
 
 > **📄 Documentation & Coordination**
 - Wrote the 'How to Run the Project' section in the `README.md` file.
