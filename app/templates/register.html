@@ -1,9 +1,22 @@
 {% extends "base.html" %}
+{% import "bootstrap_wtf.html" as wtf %}
+
 {% block content %}
 <div class="container mt-4">
     <h2 class="mb-4">Register</h2>
-    <form method="POST" action="">
+    <form method="POST" action="{{ url_for('register.register') }}">
         {{ form.hidden_tag() }}
+        {% if form.errors %}
+        <div class="alert alert-danger">
+          <ul>
+            {% for field, errors in form.errors.items() %}
+              {% for error in errors %}
+                <li><strong>{{ field }}:</strong> {{ error }}</li>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
 
         <!-- 通用字段 -->
         <div class="mb-3">
@@ -66,17 +79,19 @@
                 {{ form.expertise(class="form-select", multiple=True) }}
             </div>
 
-            <!-- 替换 available_hours 为 time_slots -->
+            <!-- time_slots -->
             <div class="mb-3">
                 <label class="form-label">Available Hours</label>
                 <div id="time-slots-container">
-                    {% for slot in form.time_slots %}
-                        <div class="row g-2 mb-2">
-                            <div class="col-md-4">{{ slot.day(class="form-select") }}</div>
-                            <div class="col-md-4">{{ slot.start_time(class="form-control") }}</div>
-                            <div class="col-md-4">{{ slot.end_time(class="form-control") }}</div>
-                        </div>
-                    {% endfor %}
+                    {% if form.role.data == 'mentor' %}  <!-- 仅当角色是导师时渲染 -->
+                        {% for slot in form.time_slots %}
+                            <div class="row g-2 mb-2">
+                                <div class="col-md-4">{{ slot.day(class="form-select") }}</div>
+                                <div class="col-md-4">{{ slot.start_time(class="form-control") }}</div>
+                                <div class="col-md-4">{{ slot.end_time(class="form-control") }}</div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
                 <button type="button" class="btn btn-outline-secondary btn-sm" id="add-slot-btn">Add Time Slot</button>
             </div>
@@ -102,8 +117,36 @@
 
         function toggleFields() {
             const role = roleSelect.value;
+
+            // 显示/隐藏表单区域
             studentFields.style.display = (role === 'student') ? 'block' : 'none';
             mentorFields.style.display = (role === 'mentor') ? 'block' : 'none';
+
+            // 处理 mentor 字段 required/disabled
+            const mentorInputs = mentorFields.querySelectorAll('input, select, textarea');
+            mentorInputs.forEach(input => {
+                if (role === 'mentor') {
+                    input.removeAttribute('disabled');
+                    // ❌ 不要添加 required，否则 select2 会出错
+                    input.removeAttribute('required');
+                } else {
+                    input.removeAttribute('required');
+                    input.setAttribute('disabled', 'disabled');
+                }
+            });
+
+
+            // 处理 student 字段（可选）
+            const studentInputs = studentFields.querySelectorAll('input, select, textarea');
+            studentInputs.forEach(input => {
+                if (role === 'student') {
+                    input.removeAttribute('disabled');
+                    input.removeAttribute('required');
+                } else {
+                    input.removeAttribute('disabled');
+                    input.removeAttribute('required');
+                }
+            });
         }
 
         roleSelect.addEventListener('change', toggleFields);
@@ -140,8 +183,10 @@
                     </div>
                 </div>
             `;
+
             container.insertAdjacentHTML('beforeend', newSlot);
         });
     });
 </script>
+
 {% endblock %}
