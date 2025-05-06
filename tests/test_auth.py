@@ -1,3 +1,3 @@
-@bp.route('/ping')
-def ping():
-    return "Pong!"
+# @bp.route('/ping')
+# def ping():
+#return "Pong!"
