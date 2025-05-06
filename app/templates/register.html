@@ -68,7 +68,7 @@
         <div id="student-fields" style="display: none;">
             <div class="mb-3">
                 {{ form.interests.label(class="form-label") }}
-                {{ form.interests(class="form-select", multiple=True) }}
+                {{ form.interests(class="form-select", multiple=True, disabled=True) }}
             </div>
         </div>
 
@@ -127,23 +127,21 @@
             mentorInputs.forEach(input => {
                 if (role === 'mentor') {
                     input.removeAttribute('disabled');
-                    // ❌ 不要添加 required，否则 select2 会出错
-                    input.removeAttribute('required');
+                    input.removeAttribute('required'); // 避免与后端验证冲突
                 } else {
-                    input.removeAttribute('required');
                     input.setAttribute('disabled', 'disabled');
+                    input.removeAttribute('required');
                 }
             });
 
-
-            // 处理 student 字段（可选）
+            // 处理 student 字段：角色为 mentor 时禁用
             const studentInputs = studentFields.querySelectorAll('input, select, textarea');
             studentInputs.forEach(input => {
                 if (role === 'student') {
                     input.removeAttribute('disabled');
                     input.removeAttribute('required');
                 } else {
-                    input.removeAttribute('disabled');
+                    input.setAttribute('disabled', 'disabled'); // 禁用学生字段
                     input.removeAttribute('required');
                 }
             });

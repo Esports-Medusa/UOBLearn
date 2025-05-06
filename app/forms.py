@@ -66,6 +66,7 @@ class RegistrationForm(FlaskForm):
         elif role == 'mentor':
             # 清除 student 字段的数据
             self.interests.data = []
+            self.interests.validators = []
 
         return super().validate(**kwargs)
 
