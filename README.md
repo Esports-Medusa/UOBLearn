@@ -38,11 +38,11 @@ Ensure you have the following installed:
 
 #### 2. **Optional: Clone the Repository**
 
-In case any files are missing or you prefer working with Git:
+If any files are missing or if you prefer working with Git, you can clone the repository as follows:
 
 ```bash
-git clone https://github.com/yourusername/your-project.git
-cd your-project
+git clone https://github.com/Esports-Medusa/UOBLearn.git
+cd UOBLearn
 ```
 
 #### 3. **Set Up a Virtual Environment**
