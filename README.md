@@ -207,10 +207,16 @@ Team members participated in collaborative discussions, feature reviews, and tes
 | Nadiya Miah      | 2889339 | 20%              | Developed test cases for mentor request feature (positive & negative). Co-directed the demo video of the system.         |                   |    |
 | Alisha Thapa     | 2167059 | 20%              | Designed the mentor request form interface. Created a negative test case for saved courses. Co-authored the README Documentation. |                   | AT        |
 
+#### Additional comments
+
+---
+
+**Jiaqi Yuan**
+
+username: QiQi / Esports-Medusa
 
 > **🗓 Work Log**
 
-FOR CODING
 | Date       | Description                                                                                                                               |
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | 2025-04-29 | Completed the main page and navigation bar for the starter code.                                                                          |
@@ -221,8 +227,6 @@ FOR CODING
 | 2025-05-05 | Completed the Mentor Appointment feature and the Save/Favourite Course feature.                                                           |
 | 2025-05-06 | Fixed a bug in the register page where students and mentors couldn’t register due to validation checking fields intended for other roles. |
 
-
-
 > **🛠️ Implemented Features**
 - **User registration/login functionality**  
 - **Notify all students when a new course is added**  
@@ -232,3 +236,22 @@ FOR CODING
 > **📄 Documentation & Coordination**
 - Wrote the 'How to Run the Project' section in the `README.md` file.
 - Coordinated version control structure and Git clean-up
+
+---
+
+**Shadie Abdulkawi**
+
+
+---
+
+**Nusrat Begum**
+
+
+---
+
+**Nadiya Miah**
+
+
+---
+
+**Alisha Thapa**
