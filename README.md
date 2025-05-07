@@ -63,15 +63,25 @@ pip install -r requirements.txt
 
 #### 5. **Configure Environment Variables**
 
-Create a .env file in the project root and add the following:
+The current prototype uses a `.flaskenv` file for local development with the following content:
+
 ```env
-FLASK_APP=app.py
+FLASK_APP=run.py
 FLASK_ENV=development
-SECRET_KEY=your-secret-key
-DATABASE_URL=sqlite:///app.db  # Example for SQLite
 ```
 
-Adjust DATABASE_URL if using MySQL/PostgreSQL:
+A separate .env file is not required unless you wish to override the default settings defined in config.py.
+
+For reference, the system is preconfigured as follows:
+
+```python
+# config.py
+SECRET_KEY = os.environ.get('SECRET_KEY') or b'WR#&f&+%78er0we=%799eww+#7^90-;s'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///app/data/data.sqlite'
+```
+
+If you plan to use MySQL or PostgreSQL, you can override the database URL:
+
 ```env
 DATABASE_URL=postgresql://user:password@localhost/dbname
 ```
