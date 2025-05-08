@@ -271,7 +271,7 @@ The video effectively showcases both the functional features and the technical f
 | Jiaqi Yuan       | 2869046  | 20%              | Led development of core features; implemented backend logic for user authentication, course functions, and mentor interactions.                                        |                   | JY        |
 | Shadie Abdulkawi | 2878514  | 20%              | Developed the saved courses feature and implemented a corresponding test case. Contributed to frontend and co-directed demo video.                                    |                   |           | 
 | Nusrat Begum     | 2246349  | 20%              | Developed test cases for secure login functionality (positive & negative). Co-authored the README documentation.                                                      |                   | NB        |
-| Nadiya Miah      | 2889339  | 20%              | Developed test cases for mentor request feature (positive & negative). Co-directed the demo video of the system.                                                      |                   |           |
+| Nadiya Miah      | 2889339  | 20%              | Developed test cases for mentor request feature (positive & negative). Co-directed the demo video of the system.                                                      |                   | NM        |
 | Alisha Thapa     | 2167059  | 20%              | Designed the mentor request form interface. Created a negative test case for saved courses. Co-authored the README documentation.                                      |                   | AT        |
 
 ## Additional Comments
@@ -296,6 +296,7 @@ The video effectively showcases both the functional features and the technical f
 ### Nusrat Begum
 
 ### Nadiya Miah
+- **Username**: NadiyaMiah
 
 ### Alisha Thapa
 - **Username**: alx-sha
