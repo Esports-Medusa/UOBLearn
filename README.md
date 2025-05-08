@@ -1,6 +1,16 @@
 # UOBLearn
 
-### What is UOBLearn and its purpose
+## Table of Contents
+- [What is UOBLearn and its Purpose](#what-is-uoblearn-and-its-purpose)
+- [Languages, Frameworks, and Tools Used](#languages-frameworks-and-tools-used)
+- [Design Principles, Patterns, and System Architecture](#design-principles-patterns-and-system-architecture)
+- [Software Development Methodology](#software-development-methodology)
+- [How to Run the Project](#how-to-run-the-project)
+- [Demo Video](#demo-video)
+- [Team Contributions](#team-contributions)
+- [Additional Comments](#additional-comments)
+
+## What is UOBLearn and its purpose
 
 UOBLearn is a support platform specifically designed for Computer Science students at the University of Birmingham. Its primary purpose is to help students who are struggling with a certain aspect of their course or module by offering quick access to high-quality, free online resources and one-to-one academic support from mentors. 
 
@@ -15,7 +25,7 @@ We implemented three key features in this prototype:
 
 This prototype demonstrates the fundamental functionality of the UOBLearn platform that would be essential in the full-scale implementation showcasing the core architecture and operation of the UOBLearn platform.
 
-### Languages, Frameworks and Tools Used
+## Languages, Frameworks and Tools Used
 
 | Component           | Technology                     |
 |---------------------|---------------------------------|
@@ -36,13 +46,13 @@ This prototype demonstrates the fundamental functionality of the UOBLearn platfo
 - **Controllers**: Flask routes handling requests, managing user input and business logic
 
 ### Database Schema
-- **Users**: Base table with specialized Student and Mentor tables (inheritance)
+- **Users**: Base table with specialised Student and Mentor tables (inheritance)
 - **Courses**: Educational resources with attributes for filtering
 - **Favorites**: Many-to-many relationship between Students and Courses
 - **MentorRequests**: Association between Students and Mentors
 
-## System Architecture
-- **Backend:** Built using Flask, with logic organized into routes, models, and form handlers.
+### System Architecture
+- **Backend:** Built using Flask, with logic organised into routes, models, and form handlers.
 - **Frontend:** Designed with Jinja2 and Bootstrap for responsive, user-friendly UI.
 - **Database:** SQLite database with relationships between users, courses, and meetings.
 - **Session Management:** Implemented with Flask-Login for secure authentication.
@@ -91,7 +101,7 @@ Each core feature was tested with both positive and negative test cases to ensur
 
 #### Saving Courses
 - **Positive test:** Verified that authenticated users can successfully save courses to their account.
-- **Negative test:** Ensured that unauthorized users (not logged in) were unable to save a course and received appropriate error feedback.
+- **Negative test:** Ensured that unauthorised users (not logged in) were unable to save a course and received appropriate error feedback.
 
 ## Software Development Methodology
 
@@ -171,7 +181,7 @@ If you plan to use MySQL or PostgreSQL, you can override the database URL:
 DATABASE_URL=postgresql://user:password@localhost/dbname
 ```
 
-#### 6. **Initialize the Database**
+#### 6. **Initialise the Database**
 
 ```bash
 flask db init      # Only needed if migrations folder is missing
@@ -200,7 +210,7 @@ The app will be accessible at: http://localhost:5000
 
 You may use the following pre-defined accounts for testing login:
 
-**🧑‍🎓 Students**
+**Students**
 
 | Email               | Password   |
 |---------------------|------------|
@@ -215,7 +225,7 @@ You may use the following pre-defined accounts for testing login:
 | student9@uob.edu    | password9  |
 | student10@uob.edu   | password10 |
 
-**👨‍🏫 Mentors**
+**Mentors**
 
 | Email               | Password   |
 |---------------------|------------|
@@ -230,21 +240,21 @@ You may use the following pre-defined accounts for testing login:
 | mentor9@uob.edu     | password9  |
 | mentor10@uob.edu    | password10 |
 
-**🛠 Admins**
+**Admins**
 
 | Email               | Password   |
 |---------------------|------------|
 | admin1@uob.edu      | password1  |
 | admin2@uob.edu      | password2  |
 
-# Demo Video
+## Demo Video
 
-The 4-minute demo video provides a walk-through of the core implementations of the UOB Learn prototype, highlighting key technical decisions, core features, and how we used the Agile methodology. 
+The 4-minute demo video provides a walk-through of the core implementations of the UOB Learn prototype, highlighting key technical decisions, core features, and how Agile methodology guided development.
 
 **Agile Methodology Overview**
 Introduction to our development approach, including how we developed our prototype using Agile principles.
 
-**Data Initialization:**
+**Data Initialisation:**
 Overview of our mock data loading process using `seed_users` and `seed_courses` to populate the database with test users and course data.
 
  **Models and Relationships:**
@@ -294,6 +304,19 @@ The video effectively showcases both the functional features and the technical f
 ### Shadie Abdulkawi
 
 ### Nusrat Begum
+- **Username**: Nusrat-Begum
+
+### Work Log
+
+  | Date       | Description                                                                                                                                                       |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 2025-03-27 | Initiated team conversation about available coding skills and potential features to incorporate into the project.                                                 |
+| 2025-04-22 | Actively contributed to the group meeting by proposing feature ideas and helping shape the team's implementation strategy and task distribution.                                            |
+| 2025-04-24 | Co-drafted the README documentation with Alisha.                                                                                                                  |
+| 2025-04-24 | Created the initial structure and foundation for the README, including layout for feature descriptions and system description.                                     |
+| 2025-05-06 | Completed all requirements for README documentation.                                                                                                              |
+| 2025-05-08 | Created positive and negative test cases for the login functionality using `pytest`. Added a test user to the test database and verified login behavior with valid and invalid credentials. Committed changes and submitted a pull request. |
+
 
 ### Nadiya Miah
 - **Username**: NadiyaMiah
