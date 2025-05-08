@@ -285,7 +285,9 @@ pytest --html=report.html --self-contained-html
 
 The 4-minute demo video provides a walk-through of the core implementations of the UOB Learn prototype, highlighting key technical decisions, core features, and how Agile methodology guided development.
 
-**Agile Methodology Overview**
+You can watch the demo video here: [UOBLearn Demo Video](https://youtu.be/VS0AQgt3a9E)
+
+**Agile Methodology Overview:**
 Introduction to our development approach, including how we developed our prototype using Agile principles.
 
 **Data Initialisation:**
