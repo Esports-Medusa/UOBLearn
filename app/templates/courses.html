@@ -41,7 +41,7 @@
     <nav aria-label="Course pagination" class="mt-4">
         <ul class="pagination justify-content-center flex-wrap">
 
-            {# 左侧 - 上一页按钮 #}
+            {# Left-side - Previous Page button #}
             {% if courses.has_prev %}
                 <li class="page-item">
                     <a class="page-link" href="{{ url_for('course.course_list', page=1, search=search) }}">&laquo;</a>
@@ -54,7 +54,7 @@
                 <li class="page-item disabled"><span class="page-link">Previous</span></li>
             {% endif %}
 
-            {# 中间 - 显示当前页附近页码 #}
+            {# Center - Display page numbers near current page #}
             {% for p in page_range %}
                 <li class="page-item {% if p == courses.page %}active{% endif %}">
                     <a class="page-link" href="{{ url_for('course.course_list', page=p, search=search) }}">{{ p }}</a>
@@ -62,7 +62,7 @@
             {% endfor %}
 
 
-            {# 右侧 - 下一页按钮 #}
+            {# Right-side - Next Page button #}
             {% if courses.has_next %}
                 <li class="page-item">
                     <a class="page-link" href="{{ url_for('course.course_list', page=courses.next_num, search=search) }}">Next</a>
@@ -76,7 +76,7 @@
             {% endif %}
         </ul>
 
-        {# 跳转到页码表单 #}
+        {# Go-to-page form #}
         <form method="get" action="{{ url_for('course.course_list') }}" class="d-flex justify-content-center mt-3 flex-wrap" style="gap: 10px; max-width: 300px; margin: auto;">
             <input type="number" name="page" min="1" max="{{ courses.pages }}" class="form-control form-control-sm" placeholder="Go to page #" required>
             <input type="hidden" name="search" value="{{ search }}">

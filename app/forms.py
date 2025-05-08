@@ -4,7 +4,7 @@ from wtforms import (
     SelectField, SubmitField, FieldList, FormField, TimeField
 )
 from wtforms.validators import DataRequired, Email, Length, EqualTo
-from wtforms import Form as NoCsrfForm  # 内嵌字段不需要 CSRF
+from wtforms import Form as NoCsrfForm  # Nested fields don't need CSRF
 
 # choices
 INTEREST_CHOICES = [('AI', 'AI'), ('ML', 'ML'), ('Cloud', 'Cloud'), ('Cybersecurity', 'Cybersecurity')]
@@ -48,23 +48,23 @@ class RegistrationForm(FlaskForm):
 
     submit = SubmitField('Register')
 
-    # 在 RegistrationForm 的 validate 方法中修改
+    # Make the changes inside the validate method of RegistrationForm.
     def validate(self, **kwargs):
         role = self.role.data
 
         if role == 'student':
-            # 清除 mentor 字段的数据和验证
+            # Clear mentor field data and validation
             self.expertise.data = []
             self.self_introduction.data = None
-            self.time_slots.entries = []  # 清空条目避免空数据
+            self.time_slots.entries = []  # Clear entries to avoid empty data
 
-            # 移除验证器
+            # Remove validators
             self.expertise.validators = []
             self.self_introduction.validators = []
             self.time_slots.validators = []
 
         elif role == 'mentor':
-            # 清除 student 字段的数据
+            # Clear data from student-specific fields
             self.interests.data = []
             self.interests.validators = []
 

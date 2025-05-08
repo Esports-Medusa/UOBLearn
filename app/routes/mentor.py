@@ -18,12 +18,12 @@ def mentor_list():
     return render_template('mentor.html', mentors=pagination, search=search_query, current_user=current_user)
 
 
-# 示例：导师接受预约
+# Example: Mentor responds to meeting request
 @bp.route('/appointments')
 def view_appointments():
     return "View mentorship requests (Placeholder)"
 
-# 示例：导师信息修改
+# Example: Edit mentor information
 @bp.route('/profile')
 def edit_profile():
     return "Mentor profile editor (Placeholder)"

@@ -13,7 +13,7 @@ def course_list():
     query = Course.query.filter(Course.title.ilike(f"%{search_query}%"))
     pagination = query.paginate(page=page, per_page=per_page, error_out=False)
 
-    # 预先计算页码范围（中心±2）
+    # Pre-calculate range of page numbers（mid±2）
     start_page = max(pagination.page - 2, 1)
     end_page = min(pagination.page + 2, pagination.pages)
     page_range = list(range(start_page, end_page + 1))

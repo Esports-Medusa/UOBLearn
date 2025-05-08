@@ -59,7 +59,7 @@
     </form>
 
   {% elif user.role == 'student' %}
-    <!-- ✅ 学生修改信息表单 -->
+    <!-- Student profile edit form -->
     <h3 class="mt-4">Edit Profile</h3>
     <form method="POST">
       {{ student_form.hidden_tag() }}
@@ -78,7 +78,7 @@
 
     <hr class="my-4">
 
-    <!-- ✅ 系统通知 -->
+    <!-- system notification -->
     <h3 class="mt-4">System Notifications</h3>
 
     {% if notifications %}
@@ -98,7 +98,7 @@
 
 
   {% elif user.role == 'mentor' %}
-    <!-- ✅ 导师修改信息表单 -->
+    <!-- Mentor profile edit form -->
     <h3 class="mt-4">Edit Mentor Profile</h3>
     <form method="POST">
       {{ mentor_form.hidden_tag() }}
@@ -137,7 +137,7 @@
   {% endif %}
 </div>
 
-<!-- JS: 联动 + 动态添加时间段 -->
+<!-- JS: Linking fields + dynamically adding time slots -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   $('select[multiple]').select2({

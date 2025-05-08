@@ -18,7 +18,7 @@
         </div>
         {% endif %}
 
-        <!-- 通用字段 -->
+        <!-- Common fields -->
         <div class="mb-3">
             {{ form.name.label(class="form-label") }}
             {{ form.name(class="form-control") }}
@@ -64,7 +64,7 @@
             {% endfor %}
         </div>
 
-        <!-- 学生字段 -->
+        <!-- student fields -->
         <div id="student-fields" style="display: none;">
             <div class="mb-3">
                 {{ form.interests.label(class="form-label") }}
@@ -72,7 +72,7 @@
             </div>
         </div>
 
-        <!-- 导师字段 -->
+        <!-- mentor fields -->
         <div id="mentor-fields" style="display: none;">
             <div class="mb-3">
                 {{ form.expertise.label(class="form-label") }}
@@ -118,23 +118,23 @@
         function toggleFields() {
             const role = roleSelect.value;
 
-            // 显示/隐藏表单区域
+            // Show/Hide form sections
             studentFields.style.display = (role === 'student') ? 'block' : 'none';
             mentorFields.style.display = (role === 'mentor') ? 'block' : 'none';
 
-            // 处理 mentor 字段 required/disabled
+            // Handle mentor fields' required/disabled attributes
             const mentorInputs = mentorFields.querySelectorAll('input, select, textarea');
             mentorInputs.forEach(input => {
                 if (role === 'mentor') {
                     input.removeAttribute('disabled');
-                    input.removeAttribute('required'); // 避免与后端验证冲突
+                    input.removeAttribute('required'); // Avoid conflicts with backend validation
                 } else {
                     input.setAttribute('disabled', 'disabled');
                     input.removeAttribute('required');
                 }
             });
 
-            // 处理 student 字段：角色为 mentor 时禁用
+            // Handle student fields: disable when role is mentor
             const studentInputs = studentFields.querySelectorAll('input, select, textarea');
             studentInputs.forEach(input => {
                 if (role === 'student') {
@@ -156,7 +156,7 @@
             allowClear: true
         });
 
-        // 动态添加 time slot 表单
+        // Dynamically add time slot form fields
         document.getElementById('add-slot-btn')?.addEventListener('click', function () {
             const container = document.getElementById('time-slots-container');
             const index = container.children.length;

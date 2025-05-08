@@ -49,7 +49,7 @@ def profile():
     if current_user.role == 'student':
         student_form = StudentProfileEditForm(obj=current_user)
 
-        # 回显 interests 为列表
+        # Display interests as a list
         student_form.interests.data = current_user.interests.split(',') if current_user.interests else []
 
         if student_form.validate_on_submit():
@@ -59,7 +59,7 @@ def profile():
             flash("Profile updated!", "success")
             return redirect(url_for('auth.profile'))
 
-        # 学生通知列表
+        # Student notification list
         notifications = Notification.query.filter_by(
             user_id=current_user.id
         ).order_by(Notification.timestamp.desc()).all()
@@ -72,7 +72,7 @@ def profile():
             mentor_form.expertise.data = current_user.expertise.split(',') if current_user.expertise else []
             mentor_form.self_introduction.data = current_user.self_introduction
 
-            # 解析 time_slots 字符串为字段对象
+            # Parse time_slots string into field objects
             mentor_form.time_slots.entries.clear()
             if current_user.available_hours:
                 for slot in current_user.available_hours.split('; '):
@@ -80,7 +80,7 @@ def profile():
                         day, times = slot.split(' ')
                         start, end = times.split('-')
 
-                        # ✅ 转换为 datetime.time 类型
+                        # Convert to datetime.time type
                         start_time = datetime.strptime(start, "%H:%M").time()
                         end_time = datetime.strptime(end, "%H:%M").time()
 
@@ -98,7 +98,7 @@ def profile():
             current_user.expertise = ",".join(mentor_form.expertise.data)
             current_user.self_introduction = mentor_form.self_introduction.data
 
-            # ✅ 将 time_slots 重新转换为字符串存入数据库
+            # Convert time_slots back to string for database storage
             time_slot_strs = []
             for slot_form in mentor_form.time_slots.entries:
                 day = slot_form.form.day.data
@@ -112,7 +112,7 @@ def profile():
             flash("Profile updated!", "success")
             return redirect(url_for('auth.profile'))
 
-    # ============ 管理员添加课程逻辑 ============
+    # ============ Logic for admin to add courses ============
     if current_user.role == 'admin' and request.method == 'POST':
         title = request.form.get('title')
         platform = request.form.get('platform')
@@ -131,7 +131,7 @@ def profile():
             db.session.add(new_course)
             db.session.commit()
 
-            # 通知学生逻辑（Observer Pattern）
+            # Logic to send notifications to students（Observer Pattern）
             from app.observers import Subject
             from app.concrete_observers import StudentObserver
             from app.models import User
