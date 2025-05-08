@@ -87,7 +87,7 @@ This prototype demonstrates the fundamental functionality of the UOBLearn platfo
 
 ### Testing Approach
 
-All test cases were written in Python using pytest, focusing on visible functionality and expected outcomes. Each team member was assigned specific tests to develop and validate.
+All test cases were written in Python using `pytest`, focusing on visible functionality and expected outcomes. Each team member was assigned specific tests to develop and validate.
 
 Each core feature was tested with both positive and negative test cases to ensure robust functionality and proper error handling:
 
@@ -102,6 +102,7 @@ Each core feature was tested with both positive and negative test cases to ensur
 #### Saving Courses
 - **Positive test:** Verified that authenticated users can successfully save courses to their account.
 - **Negative test:** Ensured that unauthorised users (not logged in) were unable to save a course and received appropriate error feedback.
+
 
 ## Software Development Methodology
 
@@ -246,6 +247,39 @@ You may use the following pre-defined accounts for testing login:
 |---------------------|------------|
 | admin1@uob.edu      | password1  |
 | admin2@uob.edu      | password2  |
+
+### How to run tests using `pytest`
+---
+
+#### Step 1: Install Dependencies
+
+Install `pytest` and the `pytest-html` plugin in the terminal :
+
+```bash
+pip install pytest pytest-html
+```
+#### Step 2: Set PYTHONPATH
+
+Set your PYTHONPATH so the `app/` directory is available for imports.
+
+```bash
+# Linux / macOS (bash/zsh)
+export PYTHONPATH=$PYTHONPATH:$(pwd)/app
+
+# Windows (CMD)
+set PYTHONPATH=%PYTHONPATH%;%CD%\app
+
+# Windows (PowerShell)
+$env:PYTHONPATH = "$env:PYTHONPATH;$(Get-Location)\app"
+```
+#### Step 3: Run Tests and Generate HTML Report
+
+Run your tests and generate an HTML report:
+
+```bash
+pytest --html=report.html --self-contained-html
+
+```
 
 ## Demo Video
 
