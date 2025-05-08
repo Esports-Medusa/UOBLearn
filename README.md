@@ -313,7 +313,7 @@ The video effectively showcases both the functional features and the technical f
 | Student Name     | ID       | Contribution (%) | Key Contributions / Tasks Completed                                                                                                                                            | Comments (if any) | Signature |
 |------------------|----------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|-----------|
 | Jiaqi Yuan       | 2869046  | 20%              | Developed both frontend and backend for key features including user registration/login, mentor appointment booking, course saving/favouriting, and new course notifications.   |                   | JY        |
-| Shadie Abdulkawi | 2878514  | 20%              | Developed the saved courses feature and implemented a corresponding test case. Contributed to frontend and co-directed demo video.                                             |                   |           | 
+| Shadie Abdulkawi | 2878514  | 20%              | Developed the saved courses feature and implemented a corresponding test case. Contributed to frontend and co-directed demo video.                                             |                   |        sa   | 
 | Nusrat Begum     | 2246349  | 20%              | Developed test cases for secure login functionality (positive & negative). Co-authored the README documentation.                                                               |                   | NB        |
 | Nadiya Miah      | 2889339  | 20%              | Developed test cases for mentor request feature (positive & negative). Co-directed the demo video of the system.                                                               |                   | NM        |
 | Alisha Thapa     | 2167059  | 20%              | Designed the mentor request form interface. Created a negative test case for saved courses. Co-authored the README documentation.                                              |                   | AT        |
@@ -336,6 +336,16 @@ The video effectively showcases both the functional features and the technical f
 | 2025-05-06 | Fixed a bug in the register page where students and mentors couldn’t register due to validation checking fields intended for other roles. |
 
 ### Shadie Abdulkawi
+- **Username**: shadieabd001
+### Work Log
+| Date       | Description |
+|------------|-------------|
+| 2025-04-22 | Participated in group meeting and actively contributed ideas to support the team's planning and discussion. |
+| 2025-04-28 | Started working on the implementation of the Save Courses functionality. Focused on the backend development, setting up the necessary endpoints and data handlers. |
+| 2025-04-30 | Continued work on the 'Save Courses' functionality, shifting focus to the frontend. Created an initial draft of `courses.html` and `saved_courses.html` to begin integrating the UI with the backend functionality. |
+| 2025-05-02 | Implemented and tested several code modifications. Designed an initial positive test for the Save Courses functionality. |
+| 2025-05-06 | Revised and modified the test case so it aligns with changes introduced in the latest system update. Began planning the demo video: outlined key topics and drafted a topic distribution plan, in collaboration with Nadiya Miah. |
+| 2025-05-07 | Implemented a fix in the positive test case for Save Course functionality and recorded my segment (first half) of the demo video. |
 
 ### Nusrat Begum
 - **Username**: Nusrat-Begum
@@ -355,16 +365,16 @@ The video effectively showcases both the functional features and the technical f
 ### Nadiya Miah
 - **Username**: NadiyaMiah
 
-  ### Work Log
+### Work Log
   
-| Date       | Description                                                                   |
-| ---------- | ----------------------------------------------------------------------------- |
-| 2025-04-01 | Contributed to group discussion on test strategy and demo structure           |
-| 2025-04-03 | Wrote positive pytest for mentor booking feature                              |
-| 2025-04-05 | Wrote negative pytest cases for mentor booking (missing fields, invalid user) |                           |
-| 2025-04-08 | Reviewed test coverage and confirmed passing pytest results                   |
-| 2025-05-01 | Recorded demo video walkthrough showing key student features                  |
-| 2025-05-01 | Wrote and delivered voiceover explaining login, saved courses, and booking    |
+| Date       | Description                                                                                               |
+| ---------- | -----------------------------------------------------------------------------                             |
+| 2025-04-01 | Contributed to group discussion on test strategy and demo structure                                       |
+| 2025-04-03 | Wrote positive pytest for mentor booking feature                                                          |
+| 2025-04-05 | Wrote negative pytest cases for mentor booking (missing fields, invalid user)                            |
+| 2025-04-08 | Reviewed test coverage and confirmed passing `pytest` results                                              |
+| 2025-05-01 | Recorded demo video walkthrough showing key student features                                               |
+| 2025-05-01 | Wrote and delivered voiceover explaining login, saved courses, and booking                                |
 
 
 ### Alisha Thapa
