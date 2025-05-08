@@ -355,6 +355,18 @@ The video effectively showcases both the functional features and the technical f
 ### Nadiya Miah
 - **Username**: NadiyaMiah
 
+  ### Work Log
+  
+| Date       | Description                                                                   |
+| ---------- | ----------------------------------------------------------------------------- |
+| 2025-04-01 | Contributed to group discussion on test strategy and demo structure           |
+| 2025-04-03 | Wrote positive pytest for mentor booking feature                              |
+| 2025-04-05 | Wrote negative pytest cases for mentor booking (missing fields, invalid user) |                           |
+| 2025-04-08 | Reviewed test coverage and confirmed passing pytest results                   |
+| 2025-05-01 | Recorded demo video walkthrough showing key student features                  |
+| 2025-05-01 | Wrote and delivered voiceover explaining login, saved courses, and booking    |
+
+
 ### Alisha Thapa
 - **Username**: alx-sha
 
@@ -369,3 +381,6 @@ The video effectively showcases both the functional features and the technical f
 | 2025-04-04 | Verified unauthenticated users could not save courses or access the saved courses page.              |
 | 2025-04-06 | Generated a `pytest` HTML report to confirm all negative test cases passed and submitted pull request. |
 | 2025-04-07 | Completed all requirements for README documentation.                                                  |
+
+
+
