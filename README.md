@@ -276,13 +276,13 @@ The video effectively showcases both the functional features and the technical f
 
 ## Team Contributions
 
-| Student Name     | ID       | Contribution (%) | Key Contributions / Tasks Completed                                                                                                                                  | Comments (if any) | Signature |
-|------------------|----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|-----------|
-| Jiaqi Yuan       | 2869046  | 20%              | Led development of core features; implemented backend logic for user authentication, course functions, and mentor interactions.                                        |                   | JY        |
-| Shadie Abdulkawi | 2878514  | 20%              | Developed the saved courses feature and implemented a corresponding test case. Contributed to frontend and co-directed demo video.                                    |                   |           | 
-| Nusrat Begum     | 2246349  | 20%              | Developed test cases for secure login functionality (positive & negative). Co-authored the README documentation.                                                      |                   | NB        |
-| Nadiya Miah      | 2889339  | 20%              | Developed test cases for mentor request feature (positive & negative). Co-directed the demo video of the system.                                                      |                   | NM        |
-| Alisha Thapa     | 2167059  | 20%              | Designed the mentor request form interface. Created a negative test case for saved courses. Co-authored the README documentation.                                      |                   | AT        |
+| Student Name     | ID       | Contribution (%) | Key Contributions / Tasks Completed                                                                                                                                            | Comments (if any) | Signature |
+|------------------|----------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|-----------|
+| Jiaqi Yuan       | 2869046  | 20%              | Developed both frontend and backend for key features including user registration/login, mentor appointment booking, course saving/favouriting, and new course notifications.   |                   | JY        |
+| Shadie Abdulkawi | 2878514  | 20%              | Developed the saved courses feature and implemented a corresponding test case. Contributed to frontend and co-directed demo video.                                             |                   |           | 
+| Nusrat Begum     | 2246349  | 20%              | Developed test cases for secure login functionality (positive & negative). Co-authored the README documentation.                                                               |                   | NB        |
+| Nadiya Miah      | 2889339  | 20%              | Developed test cases for mentor request feature (positive & negative). Co-directed the demo video of the system.                                                               |                   | NM        |
+| Alisha Thapa     | 2167059  | 20%              | Designed the mentor request form interface. Created a negative test case for saved courses. Co-authored the README documentation.                                              |                   | AT        |
 
 ## Additional Comments
 
@@ -291,14 +291,14 @@ The video effectively showcases both the functional features and the technical f
 
 ### Work Log
 
-| Date       | Description                                                                                          |
-|------------|------------------------------------------------------------------------------------------------------|
-| 2025-04-29 | Completed the main page and navigation bar for the starter code.                                     |
-| 2025-04-30 | Completed the login and profile pages for the starter code, and finished initializing the database.   |
-| 2025-05-01 | Resolved merge conflict errors caused by an incorrect merge into the main branch, within the `fix-broken-main` branch. |
-| 2025-05-02 | Reviewed Alisha Thapa’s merge request, made minor adjustments, and completed the merge.              |
-| 2025-05-04 | Improved the UI of the login page. Completed the register page and the new course notification feature. |
-| 2025-05-05 | Completed the Mentor Appointment feature and the Save/Favourite Course feature.                       |
+| Date       | Description                                                                                                                              |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| 2025-04-29 | Completed the main page and navigation bar for the starter code.                                                                         |
+| 2025-04-30 | Completed the login and profile pages for the starter code, and finished initializing the database.                                      |
+| 2025-05-01 | Resolved merge conflict errors caused by an incorrect merge into the main branch, within the `fix-broken-main` branch.                   |
+| 2025-05-02 | Reviewed Alisha Thapa’s merge request, made minor adjustments, and completed the merge.                                                  |
+| 2025-05-04 | Improved the UI of the login page. Completed the register page and the new course notification feature.                                  |
+| 2025-05-05 | Completed the Mentor Appointment feature and the Save/Favourite Course feature.                                                          |
 | 2025-05-06 | Fixed a bug in the register page where students and mentors couldn’t register due to validation checking fields intended for other roles. |
 
 ### Shadie Abdulkawi
